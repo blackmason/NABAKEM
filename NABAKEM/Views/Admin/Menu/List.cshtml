@@ -1,0 +1,174 @@
+﻿@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/_Layouts/AdminLayout.cshtml";
+}
+
+<table class="tbl_list">
+    <tr>
+        <th>코드</th>
+        <th>상위코드</th>
+        <th>메뉴이름</th>
+        <th>URL</th>
+        <th>사용여부</th>
+        <th>권한</th>
+        <th>수정날짜</th>
+        <th>만든날짜</th>
+    </tr>
+
+    @foreach (var item in @Model)
+    {
+        <tr data-menu-code="@item.Code">
+            <td>@item.Code</td>
+            <td>@item.ParentCode</td>
+            <td>@item.Name</td>
+            <td>@item.Url</td>
+            <td>@item.Enabled</td>
+            <td>@item.Role</td>
+            <td>@item.Modified</td>
+            <td>@item.Created</td>
+        </tr>
+    }
+</table>
+
+<table id="menus-form">
+    <tr>
+        <th>메뉴이름</th>
+        <td><input type="text" name="menuName" id="menu-name" class="txt_box" /></td>
+        <th>메뉴코드</th>
+        <td><input type="text" name="menuCode" id="menu-code" class="txt_box" /></td>
+        <th>부모메뉴</th>
+        <td><input type="text" name="parentName" id="parent-name" class="txt_box" readonly /></td>
+        <th>부모코드</th>
+        <td><input type="text" name="parentCode" id="parent-code" class="txt_box" /></td>
+    </tr>
+    <tr>
+        <th>URL</th>
+        <td><input type="text" name="menuUrl" id="menu-url" class="txt_box" /></td>
+        <th>권한</th>
+        <td><input type="text" name="menuRole" id="menu-role" class="txt_box" /></td>
+        <th>사용여부</th>
+        <td><input type="text" name="menuEnabled" id="menu-enabled" class="txt_box" /></td>
+        <th></th>
+        <td></td>
+    </tr>
+</table>
+
+<div class="btn_group">
+    <input type="button" value="취소" id="btn-cancel" class="btn_set" />
+    <input type="button" value="수정" id="btn-update" class="btn_set" />
+    <input type="button" value="추가" id="btn-add" class="btn_set" />
+</div>
+
+<script>
+    $(document).ready(function () {
+        var code;
+        $('.tbl_list tr').click(function () {
+            code = $(this).data('menu-code');
+
+            $.ajax({
+                url: '/Admin/GetMenu',
+                data: { code: code },
+                success: function (data) {
+                    $('#menu-name').val(data.Name);
+                    $('#menu-code').val(data.Code);
+                    GetParentName(data.ParentCode);
+                    $('#parent-code').val(data.ParentCode);
+
+                    if (data.Url == '') {
+                        $('#menu-url').val('없음');
+                    }
+                    else {
+                        $('#menu-url').val(data.Url);
+                    }
+
+                    $('#menu-role').val(data.Role);
+                    $('#menu-enabled').val(data.Enabled);
+                },
+                error: function (xhr, error, status) {
+                    alert(xhr + ":" + error + ":" + status + ":" + typeof (code));
+                }
+            });
+
+            return false;
+        });
+
+        $('#btn-cancel').click(function () {
+            EmptyForms();
+        });
+
+        $('#btn-update').click(function () {
+            SubmitForms('update');
+        })
+        $('#btn-add').click(function () {
+            SubmitForms();
+        })
+    });
+
+    function GetParentName(parentCode) {
+        if ('0' == parentCode) {
+            $('#parent-name').val('최상위');
+        }
+        else {
+            $.ajax({
+                url: '/Admin/GetMenu',
+                data: { code: parentCode },
+                success: function (parent) {
+                    $('#parent-name').val(parent.Name);
+                }
+            });
+        }
+    }
+
+    function EmptyForms() {
+        // 취소 버튼 클릭 시 텍스트박스 클리어
+        $('#menus-form input').each(function () {
+            $(this).val('');
+        })
+    }
+
+    function SubmitForms(btnGb) {
+        var value = [];
+        var json = {};
+
+        $('#menus-form input').each(function (i, v) {
+            value[i] = $(this).val();
+        })
+
+        json = {
+            Name: value[0],
+            Code: value[1],
+            ParentCode: value[3],
+            Url: value[4],
+            Role: value[5],
+            Enabled: value[6]
+        }
+
+        if (btnGb == 'update') {
+            $.ajax({
+                url: '/Admin/UpdateMenu',
+                data: json,
+                success: function (data) {
+                    alert("메뉴수정이 완료되었습니다.");
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+        }
+        else {
+            $.ajax({
+                url: '/Admin/AddMenu',
+                data: json,
+                success: function (data) {
+                    alert("메뉴추가가 완료되었습니다.");
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+        }
+
+    }
+</script>

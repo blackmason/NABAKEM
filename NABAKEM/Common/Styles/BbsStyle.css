@@ -1,0 +1,44 @@
+﻿
+/* List */
+.tbl_bbs_list {margin:20px auto; width:95%; border-collapse: collapse; font-size: 13px;}
+.tbl_bbs_list tr {border-bottom: 1px solid #ccc;}
+.tbl_bbs_list tr:nth-child(1) {border-bottom: 2px solid #213478;}
+.tbl_bbs_list tr:hover {background-color: #f9f9f9;}
+.tbl_bbs_list th {height: 30px; background-color: #F5F3F5;}
+.tbl_bbs_list td {height: 35px; text-align: center;}
+td a {color: black; text-decoration: none;}
+td a:visited {color: black; text-decoration: none;}
+.bbs_search_area {margin: 10px auto; width:95%; height:40px; line-height: 40px;}
+.txt_bbs_search {padding: 5px 3px; width:250px; }
+.btn_bbs_search {padding: 5px 10px; background-color:#eee; border: 1px solid #ccc; vertical-align: middle;}
+.bbs_page_area {margin: 10px auto; width: 95%; text-align: center;}
+
+/* Detail */
+.tbl_bbs {margin:20px auto; width: 95%; border: 1px solid #ccc; border-collapse:collapse; font-size: 13px;}
+.tbl_bbs tr {border: 1px solid #ccc;}
+.tbl_bbs th {width: 100px; height:25px; background-color: #f0f0f0;}
+.td_contents {padding: 10px 10px;}
+.td_contents:nth-child(4) {width: 120px; text-align:center;}
+.contents_body {padding: 10px 20px; min-height: 500px; display: block; overflow-x: auto;}
+.btn_bbs_area {margin: 0 auto; width: 95%; text-align: right; vertical-align: middle;}
+.btn_bbs_span {padding: 3px 10px; width: 30px; font-size: 13px; color: black; text-decoration: none; background-color: #eee; border:1px solid #ccc;}
+
+/* Write */
+.tbl_editor_form {margin:20px auto;width:95%;border:1px solid #ccc;border-collapse:collapse;}
+.tbl_editor_form tr {border: 1px solid #ccc;}
+.tbl_editor_form td {padding:10px;text-align:center;}
+.tbl_editor_form th {width: 100px; background-color: #f0f0f0;}
+.btn_group {margin:auto;width:95%;text-align:center;}
+.btn_confirm {padding:5px 10px;border:1px solid #ccc;}
+
+/* Notice List Page */
+#notice-list th:nth-child(1) {width: 7%}
+#notice-list th:nth-child(2) {width: 70%;}
+#notice-list td:nth-child(2) {text-align: left;}
+
+/* Article All Page */
+#article-all-list th:nth-child(1) {width: 7%;}
+#article-all-list th:nth-child(2) {width: 7%;}
+#article-all-list th:nth-child(4) {width: 10%;}
+#article-all-list th:nth-child(5) {width: 10%;}
+#article-all-list th:nth-child(6) {width: 7%;}

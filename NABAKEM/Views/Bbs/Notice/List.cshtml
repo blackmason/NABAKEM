@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/_Layouts/MainLayout.cshtml";
+}
+
+<table id="notice-list" class="tbl_bbs_list">
+    <tr>
+        <th>No</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성날짜</th>
+        <th>조회수</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (@Model.Count < 1)
+        {
+            <tr><td>자료가 없습니다.</td></tr>
+        }
+        else
+        {
+            <tr>
+                <td>@item.No</td>
+                <td><a href="/BBS/Notice/Detail/@item.No">@item.Subject</a></td>
+                <td>@item.Author</td>
+                <td>@item.InsertDate</td>
+                <td>@item.Hit</td>
+            </tr>
+        }
+    }
+</table>
+<div class="bbs_search_area">
+    <input type="text" class="txt_bbs_search" name="searchKey" />
+    <input type="button" class="btn_bbs_search" value="검색" />
+</div>
+<div class="bbs_page_area">[1][2][3][4]</div>
+<script>
+    var msg = '@TempData["msg"]';
+    if (msg) {
+        alert(msg);
+    }
+</script>

@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D4A4DF5D-3373-4493-A65D-39471523ED4C}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NABAKEM</RootNamespace>
+    <AssemblyName>NABAKEM</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.30506.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.30506.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BbsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RootController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Domains\Board.cs" />
+    <Compile Include="Models\Domains\Menus.cs" />
+    <Compile Include="Models\Helpers\BoardHelper.cs" />
+    <Compile Include="Models\Helpers\MenuHelper.cs" />
+    <Compile Include="Models\Helpers\RootDataAccessHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Common\Plugins\DaumEditor\css\content_view.css" />
+    <Content Include="Common\Plugins\DaumEditor\css\content_wysiwyg.css" />
+    <Content Include="Common\Plugins\DaumEditor\css\editor.css" />
+    <Content Include="Common\Plugins\DaumEditor\css\popup.css" />
+    <Content Include="Common\Plugins\DaumEditor\editor.html" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_02.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_03.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_04.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_05.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_06.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_07.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_08.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_09.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_10.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_11.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_12.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_13.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_14.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_15.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_16.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_17.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_18.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_19.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_20.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_21.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_22.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_23.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_24.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_25.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_26.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_27.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\ani_28.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_02.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_03.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_04.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_05.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_06.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_07.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_08.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_09.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_10.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_11.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_12.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_13.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_14.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_15.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_16.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_17.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_18.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_19.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_20.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_21.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_22.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_23.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_24.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_25.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_26.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_27.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_28.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\etc_29.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_02.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_03.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_04.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_05.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_06.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_07.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_08.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_09.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_10.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_11.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_12.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_13.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_14.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_15.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_16.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_17.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_18.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_19.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_20.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_21.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_22.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_23.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_24.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_25.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_26.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_27.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_28.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\per_29.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_02.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_03.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_04.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_05.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_06.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_07.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_08.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_09.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_10.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_11.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_12.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_13.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_14.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_15.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_16.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_17.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_18.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_19.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_20.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_21.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_22.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_23.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_24.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_25.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_26.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_27.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_28.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_29.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_30.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_31.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_32.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_33.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_34.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\emoticon\things_35.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\horizontalrule\line01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\horizontalrule\line02.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\horizontalrule\line03.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\horizontalrule\line04.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\horizontalrule\line05.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\horizontalrule\line06.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\horizontalrule\line07.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\horizontalrule\line08.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\deco\contents\quote\titation01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_a_close.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_a_delete.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_a_delete4.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_a_delete6.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_a_fold.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_a_spread.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_a_upload.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_cancel.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_cancel_s1.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_cb_spread.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_confirm.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_confirm_s1.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_deletefile.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_images_three.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_images_two.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_l_cancel.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_l_confirm.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_l_input_1.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_minus.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_plus.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_remove.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\btn_revert.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\bt_close.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\b_link.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\editor_bi.png" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\emoticon\emoticon_01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\emoticon\emoticon_02.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\emoticon\emoticon_03.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\emoticon\emoticon_04.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\file\ico_stop.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\horizontalrule\line01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\horizontalrule\line02.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\horizontalrule\line03.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\horizontalrule\line04.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\horizontalrule\line05.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\horizontalrule\line06.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\horizontalrule\line07.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\ic_arrow02.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\ic_col.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\ic_dot.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\ic_new.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\ic_pie.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\ic_play01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\ic_row.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\img_colorbar_w.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\img_color_w.png" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\img_multi_icon.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\img_multi_wmp.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\index01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\index03.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\loading2.png" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\menu_border_style.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\menu_border_width.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_auction.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_chart.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_etc.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_html.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_hwp.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_map.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_movie.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_mp3.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_music.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_pdf.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_photo.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_ppt.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_preview.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_swf.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_txt.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_vote.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_word.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_xls.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pn_zip.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pop_footer_btn.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\pop_header_bg.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\progress_01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_etc_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_gif_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_html_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_hwp_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_jpg_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_movie_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_mp3_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_pdf_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_png_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_ppt_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_swf_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_txt_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_word_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_xls.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_xls_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\p_zip_s.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\quote\citation01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\quote\citation02.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\quote\citation03.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\quote\citation04.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\quote\citation05.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\quote\citation06.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\skin\01\bot_bg.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\skin\01\bot_left.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\skin\01\bot_right.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\skin\01\btn_drag01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\skin\01\btn_fold_box.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\skin\01\btn_spread_box.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\skin\05\icon_add_table01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\skin\05\icon_table_layer01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\skin\05\icon_table_layer02.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\skin\05\tx_btn_01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\skin\06\tx_icon_20130320.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\skin\06\tx_text.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\skin\06\tx_text2.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\spacer2.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\box1_left.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\box1_right.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\box2_left.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\box2_right.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\btn_direct_setting.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\btn_down.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\btn_form.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\btn_layout.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\btn_tcancel.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\btn_tselect.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\btn_up.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\button_line.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\icon_design.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\icon_form.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\icon_layout_hovered.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\img_des_bg.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\img_layout_bg.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\menu_line.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\tab_01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\tab_02.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\table\tab_03.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\textbox\textbox.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\textbox\thum_line01.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\textbox\thum_line02.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\textbox\thum_line03.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\textbox\thum_line04.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\tvpot\body_bg.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\w_bgimg.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\w_bgimg_02.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\w_leftimg.gif" />
+    <Content Include="Common\Plugins\DaumEditor\images\icon\editor\w_rightimg.gif" />
+    <Content Include="Common\Plugins\DaumEditor\js\editor.js" />
+    <Content Include="Common\Plugins\DaumEditor\js\editor_creator.js" />
+    <Content Include="Common\Plugins\DaumEditor\js\editor_creator_decompressor.js" />
+    <Content Include="Common\Plugins\DaumEditor\js\editor_decompressor.js" />
+    <Content Include="Common\Plugins\DaumEditor\js\editor_loader.js" />
+    <Content Include="Common\Plugins\DaumEditor\js\editor_loader_decompressor.js" />
+    <Content Include="Common\Plugins\DaumEditor\js\popup.js" />
+    <Content Include="Common\Plugins\DaumEditor\js\popup_decompressor.js" />
+    <Content Include="Common\Plugins\DaumEditor\js\trex\modules\table\async\template_data.js" />
+    <Content Include="Common\Plugins\DaumEditor\js\trex\tool\async\emoticon.js" />
+    <Content Include="Common\Plugins\DaumEditor\js\trex\tool\async\fullscreen.js" />
+    <Content Include="Common\Plugins\DaumEditor\js\trex\tool\async\specialchar.js" />
+    <Content Include="Common\Plugins\DaumEditor\pages\template\simple.html" />
+    <Content Include="Common\Plugins\DaumEditor\pages\trex\file.html" />
+    <Content Include="Common\Plugins\DaumEditor\pages\trex\iframe_loader_catalyst.html" />
+    <Content Include="Common\Plugins\DaumEditor\pages\trex\iframe_loader_catalyst_edge.html" />
+    <Content Include="Common\Plugins\DaumEditor\pages\trex\iframe_loader_catalyst_loose.html" />
+    <Content Include="Common\Plugins\DaumEditor\pages\trex\iframe_loader_catalyst_strict.html" />
+    <Content Include="Common\Plugins\DaumEditor\pages\trex\image.html" />
+    <Content Include="Common\Plugins\DaumEditor\pages\trex\multimedia.html" />
+    <Content Include="Common\Plugins\jquery-1.11.3.min.js" />
+    <Content Include="Common\Plugins\menus.js" />
+    <Content Include="Common\Scripts\MenuScript.js" />
+    <Content Include="Common\Styles\AdminStyle.css" />
+    <Content Include="Common\Styles\BbsStyle.css" />
+    <Content Include="Common\Styles\AccountStyle.css" />
+    <Content Include="Common\Styles\MainStyle.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Layouts\MainLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Main.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_Layouts\AdminLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Product\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Product\Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Product\Update.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Menu\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bbs\Notice\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bbs\Notice\Write.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Bbs\Notice\Detail.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>13275</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1486/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

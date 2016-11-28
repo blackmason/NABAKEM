@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" charset="utf-8" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Common/Styles/MainStyle.css" />
+    <link rel="stylesheet" type="text/css" href="~/Common/Styles/BbsStyle.css" />
+    <link rel="stylesheet" href="~/Common/Plugins/DaumEditor/css/editor.css" type="text/css" charset="utf-8" />
+    <script src="~/Common/Plugins/jquery-1.11.3.min.js"></script>
+    <script src="~/Common/Scripts/MenuScript.js"></script>
+    <script src="~/Common/Plugins/DaumEditor/js/editor_loader.js" type="text/javascript" charset="utf-8"></script>
+    <title>SCT</title>
+</head>
+<body>
+    <div id="container">
+        <div id="top-navi">
+            <ul class="top_navi_left">
+                <li><a href="/Home/Main">첫화면</a></li>
+            </ul>
+            <ul class="top_navi_right">
+                <li><a href="/Admin/Summary">관리자</a></li>
+                <li>회원가입</li>
+                <li><a href="/Account/Login">로그인</a></li>
+            </ul>
+        </div>
+        <div id="search-area">
+            <input type="text" id="global-search-key" name="searchKey" />
+        </div>
+        <div id="main-navi">
+            <ul id="main-navi-list"></ul>
+        </div>
+        <div id="contents">
+            @RenderBody()
+            FAQ
+        </div>
+        <div id="footer"></div>
+    </div>
+</body>
+</html>

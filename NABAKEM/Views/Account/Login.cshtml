@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" charset="utf-8" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Common/Styles/AccountStyle.css" />
+    <title>Login</title>
+</head>
+<body>
+    <div id="container">
+        <div id="login-box">
+            <div class="empty"></div>
+            <span class="label">Email</span><input type="text" name="uid" id="user-id" />
+            <span class="label">Password</span><input type="password" name="upass" id="user-pass" />
+            <button type="submit" id="btn-login" class="btn_account1">로그인</button>
+            <button type="submit" id="btn-find-account" class="btn_account2">아이디/암호 찾기</button>
+            <button type="submit" id="btn-join" class="btn_account2">회원가입</button>
+            <span class="helper"><a href="/Home/Main">첫 화면으로</a></span>
+            <span class="helper alert_msg">@TempData["msg"]</span>
+        </div>
+    </div>
+</body>
+</html>

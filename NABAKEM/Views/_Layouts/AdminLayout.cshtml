@@ -1,0 +1,69 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" charset="utf-8" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Common/Styles/BbsStyle.css" />
+    <link rel="stylesheet" type="text/css" href="~/Common/Styles/AdminStyle.css" />
+    <link rel="stylesheet" href="~/Common/Plugins/DaumEditor/css/editor.css" type="text/css" charset="utf-8" />
+    <script src="~/Common/Plugins/jquery-1.11.3.min.js"></script>
+    <script src="~/Common/Plugins/DaumEditor/js/editor_loader.js?" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Common/Scripts/MenuScript.js"></script>
+    <title>SCT</title>
+</head>
+<body>
+    <div id="container">
+        <div id="top-navi">
+            <ul class="top_navi_left">
+                <li><a href="/Main/Index">첫화면</a></li>
+            </ul>
+            <ul class="top_navi_right">
+                <li>회원가입</li>
+                <a href="/Authorize/Login"><li>로그인</li></a>
+            </ul>
+        </div>
+        <div id="main-navi">
+            <ul id="main-navi-list"></ul>
+        </div>
+        <div id="side-navi">
+            <div id="label"><a href="/Admin/Summary">관리자메뉴</a></div>
+            <div class="main_menus">제품관리</div>
+            <div>
+                <ul class="side_sub_menus">
+                    <li><a href="/Admin/Product/List">제품목록</a></li>
+                    <li><a href="/Admin/Product/Add">제품추가</a></li>
+                    <li><a href="/Admin/Product/Update">제품수정</a></li>
+                </ul>
+            </div>
+            <div class="main_menus">메뉴관리</div>
+            <div>
+                <ul class="side_sub_menus">
+                    <li><a href="/Admin/Menus/List">메뉴추가/수정</a></li>
+                </ul>
+            </div>
+            <div class="main_menus">게시판관리</div>
+            <div>
+                <ul class="side_sub_menus">
+                    <li><a href="/Admin/Notice/Write">공지추가</a></li>
+                    <li><a href="/Admin/GetAllArticle">전체목록</a></li>
+                </ul>
+            </div>
+            <div class="main_menus">사용자관리</div>
+            <div>
+                <ul class="side_sub_menus">
+                    <li>사용자목록</li>
+                    <li>사용자추가</li>
+                </ul>
+            </div>
+        </div>
+        <div id="contents">
+            @RenderBody()
+        </div>
+        <div id="footer"></div>
+    </div>
+</body>
+</html>

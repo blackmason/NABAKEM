@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/_Layouts/AdminLayout.cshtml";
+}
+
+<table id="tbl-prod-form" class="tbl_prod_form">
+    <tr>
+        <th class="th_label">상품이름</th>
+        <td class="td_body"><input type="text" id="txt-product-name" class="txt_prod_name form_prod_input" name="productName" /></td>
+    </tr>
+    <tr>
+        <th class="th_label">상품분류</th>
+        <td class="td_body">
+            <select id="sel-product-group" class="sel_prod_group form_prod_input" name="productGroup">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th class="th_label">상품이미지</th>
+        <td class="td_body">
+            <ul id="image-attach">
+                <li>
+                    <span class="picture_label">Thumbnail</span>
+                    <span class="picture_area"></span>
+                    <span class="btn_area"><input type="file" id="btn-file-thumb" class="btn_file_add" /></span>
+                </li>
+                <li>
+                    <span class="picture_label">제품이미지1</span>
+                    <span class="picture_area"></span>
+                    <span class="btn_area"><input type="file" id="btn-file-prod1" class="btn_file_add" /></span>
+                </li>
+                <li>
+                    <span class="picture_label">제품이미지2</span>
+                    <span class="picture_area"></span>
+                    <span class="btn_area"><input type="file" id="btn-file-prod2" class="btn_file_add" /></span>
+                </li>
+            </ul>
+        </td>
+    <tr>
+        <th class="th_label">제품단위</th>
+        <td class="td_body">
+            <select id="sel-product-unit" class="sel_prod_unit form_prod_input" name="productUnit">
+                <option value="1">kg</option>
+                <option value="2">g</option>
+                <option value="3">ea</option>
+            </select>
+            <label name="productUnit">직접입력 <input type="radio" name="productUnit" /></label>
+            <input type="text" id="txt-product-unit" class="txt_prod_unit form_prod_input" name="productUnit" />
+        </td>
+    </tr>
+    <tr>
+        <th class="th_label">단위별가격</th>
+        <td class="td_body">
+            <input type="text" id="txt-product-price" class="txt_prod_price form_prod_input" name="productPrice" />
+            <label name="productPrice">협의 <input type="radio" name="productPrice" /></label>
+        </td>
+    </tr>
+    <tr>
+        <th class="th_label">상품설명</th>
+        <td class="td_body"><iframe id="wysiwyg" width="95%" height="100%" ;" frameborder="0" src="~/Common/Plugins/DaumEditor/editor.html"></iframe></td>
+    </tr>
+</table>
+
+@*상품등록
+    --상품이름
+    --상품분류
+    --상품이미지
+    --작은이미지
+    --상품설명*@
