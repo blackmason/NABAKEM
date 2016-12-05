@@ -13,7 +13,7 @@ namespace NABAKEM.Models.Helpers
         /* 전체메뉴 가져오기 */
         public List<Menus> GetAllMenus()
         {
-            string sql = "SELECT CODE, P_CODE, NAME, URL, ENABLED, ROLE, MODIFIED, CREATED FROM MENUS ORDER BY ORDERING, CODE";
+            string sql = "SELECT CODE, P_CODE, NAME, URL, ENABLED, ROLE, ORDERING, COMMENT, CONVERT(VARCHAR(16), MODIFIED, 120), CONVERT(VARCHAR(16), CREATED, 120) FROM MENUS ORDER BY ORDERING, CODE";
 
             SetConnectionString();
             Menus menus;
@@ -33,8 +33,10 @@ namespace NABAKEM.Models.Helpers
                     menus.Url = reader[3].ToString();
                     menus.Enabled = reader[4].ToString();
                     menus.Role = reader[5].ToString();
-                    menus.Modified = reader[6].ToString();
-                    menus.Created = reader[7].ToString();
+                    menus.Ordering = reader[6].ToString();
+                    menus.Comment = reader[7].ToString();
+                    menus.Modified = reader[8].ToString();
+                    menus.Created = reader[9].ToString();
                     menuList.Add(menus);
                 }
                 connection.Close();
@@ -71,7 +73,7 @@ namespace NABAKEM.Models.Helpers
 
         public Menus GetMenu(string code)
         {
-            string sql = string.Format("SELECT CODE, P_CODE, NAME, URL, ENABLED, ROLE FROM MENUS WHERE CODE = '{0}'", code);
+            string sql = string.Format("SELECT CODE, P_CODE, NAME, URL, ORDERING, COMMENT, ENABLED, ROLE FROM MENUS WHERE CODE = '{0}'", code);
 
             Menus menu = null;
             SetConnectionString();
@@ -88,8 +90,10 @@ namespace NABAKEM.Models.Helpers
                     menu.ParentCode = reader[1].ToString();
                     menu.Name = reader[2].ToString();
                     menu.Url = reader[3].ToString();
-                    menu.Enabled = reader[4].ToString();
-                    menu.Role = reader[5].ToString();
+                    menu.Ordering = reader[4].ToString();
+                    menu.Comment = reader[5].ToString();
+                    menu.Enabled = reader[6].ToString();
+                    menu.Role = reader[7].ToString();
                 }
                 connection.Close();
             }

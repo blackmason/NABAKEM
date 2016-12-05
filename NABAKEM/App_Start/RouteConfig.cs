@@ -14,10 +14,18 @@ namespace NABAKEM
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{mode}/{id}",
-                defaults: new { controller = "Home", action = "Main", mode=UrlParameter.Optional, id = UrlParameter.Optional }
+                name: "Id",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Main", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+               name: "ModeId",
+               url: "{controller}/{action}/{mode}/{id}",
+               defaults: new { controller = "Home", action = "Main", mode = UrlParameter.Optional, id = UrlParameter.Optional }
+            );
+
+            
         }
     }
 }

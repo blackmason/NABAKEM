@@ -24,7 +24,7 @@ namespace NABAKEM.Controllers
         /// 제품관리
         /// </summary>
         /// <returns></returns>
-        public ActionResult Product(string id)
+        public ActionResult Products(string id)
         {
             if ("List" == id)
             {
@@ -62,7 +62,6 @@ namespace NABAKEM.Controllers
             {
                 return RedirectToAction("Summary");
             }
-            
         }
 
         /*

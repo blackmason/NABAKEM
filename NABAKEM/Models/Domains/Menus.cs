@@ -13,6 +13,8 @@ namespace NABAKEM.Models.Domains
         public string Url { get; set; }
         public string Enabled { get; set; }
         public string Role { get; set; }
+        public string Ordering { get; set; }
+        public string Comment { get; set; }
         public string Modified { get; set; }
         public string Created { get; set; }
     }

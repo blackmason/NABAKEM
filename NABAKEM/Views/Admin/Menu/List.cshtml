@@ -3,7 +3,7 @@
     Layout = "~/Views/_Layouts/AdminLayout.cshtml";
 }
 
-<table class="tbl_list">
+<table class="menus_list tbl_list">
     <tr>
         <th>코드</th>
         <th>상위코드</th>
@@ -11,6 +11,8 @@
         <th>URL</th>
         <th>사용여부</th>
         <th>권한</th>
+        <th>순서</th>
+        <th>메뉴설명</th>
         <th>수정날짜</th>
         <th>만든날짜</th>
     </tr>
@@ -24,32 +26,48 @@
             <td>@item.Url</td>
             <td>@item.Enabled</td>
             <td>@item.Role</td>
+            <td>@item.Ordering</td>
+            <td>@item.Comment</td>
             <td>@item.Modified</td>
             <td>@item.Created</td>
         </tr>
     }
 </table>
 
-<table id="menus-form">
+<table class="tbl_menu_info tbl_form">
     <tr>
-        <th>메뉴이름</th>
-        <td><input type="text" name="menuName" id="menu-name" class="txt_box" /></td>
-        <th>메뉴코드</th>
-        <td><input type="text" name="menuCode" id="menu-code" class="txt_box" /></td>
-        <th>부모메뉴</th>
-        <td><input type="text" name="parentName" id="parent-name" class="txt_box" readonly /></td>
-        <th>부모코드</th>
-        <td><input type="text" name="parentCode" id="parent-code" class="txt_box" /></td>
+        <th class="th_label">메뉴이름</th>
+        <td class="td_body"><input type="text" name="menuName" id="menu-name" class="txt_box" /></td class="td_body">
+        <th class="th_label">상위메뉴</th>
+        <td class="td_body">
+            <select name="menuParent" id="menu-parent" class="sel_box">
+                <option value="0">-----------</option>
+            </select>
+        </td class="td_body">
+        <th class="th_label">URL</th>
+        <td class="td_body"><input type="text" name="menuName" id="menu-url" class="txt_box" /></td class="td_body">
     </tr>
     <tr>
-        <th>URL</th>
-        <td><input type="text" name="menuUrl" id="menu-url" class="txt_box" /></td>
-        <th>권한</th>
-        <td><input type="text" name="menuRole" id="menu-role" class="txt_box" /></td>
-        <th>사용여부</th>
-        <td><input type="text" name="menuEnabled" id="menu-enabled" class="txt_box" /></td>
-        <th></th>
-        <td></td>
+        <th class="th_label">사용여부</th>
+        <td class="td_body">
+            <select name="menuEnabled" id="menu-enabled" class="sel_box">
+                <option value="Y">사용</option>
+                <option value="N">사용안함</option>
+            </select>
+        </td class="td_body">
+        <th class="th_label">사용권한</th>
+        <td class="td_body">
+            <select name="menuRole" id="menu-role" class="sel_box">
+                <option value="Open">개방</option>
+                <option value="Closed">관리자전용</option>
+            </select>
+        </td class="td_body">
+        <th class="th_label">순서</th>
+        <td class="td_body"><input type="text" name="menuName" id="menu-ordering" class="txt_box" /></td class="td_body">
+    </tr>
+    <tr>
+        <th class="th_label">설명</th>
+        <td class="td_body" colspan="5"><input type="text" name="menuComment" id="menu-comment" class="txt_box menu_comment" /></td class="td_body">
     </tr>
 </table>
 
@@ -81,6 +99,7 @@
                         $('#menu-url').val(data.Url);
                     }
 
+                    $('#menu-comment').val(data.Comment);
                     $('#menu-role').val(data.Role);
                     $('#menu-enabled').val(data.Enabled);
                 },
