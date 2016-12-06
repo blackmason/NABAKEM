@@ -101,7 +101,7 @@ namespace NABAKEM.Models.Helpers
             return menu;
         }
 
-        public int AddMenu(string code, string name, string parentCode, string url, string role, string enabled)
+        public int AddMenu(string code, string name, string parentCode, string url, string role, string enabled, string ordering, string comment)
         {
             int result;
             string sql = "MENU_ADD_USP";
@@ -118,6 +118,8 @@ namespace NABAKEM.Models.Helpers
                 command.Parameters.AddWithValue("@URL", url);
                 command.Parameters.AddWithValue("@ENABLED", enabled);
                 command.Parameters.AddWithValue("@ROLE", role);
+                command.Parameters.AddWithValue("@ORDERING", ordering);
+                command.Parameters.AddWithValue("@COMMENT", comment);
                 result = command.ExecuteNonQuery();
                 connection.Close();
             }
@@ -125,7 +127,7 @@ namespace NABAKEM.Models.Helpers
             return result;
         }
 
-        public int UpdateMenu(string code, string name, string parentCode, string url, string role, string enabled)
+        public int UpdateMenu(string code, string name, string parentCode, string url, string role, string enabled, string ordering, string comment)
         {
             int result;
             string sql = "MENU_UPDATE_USP";
@@ -141,6 +143,8 @@ namespace NABAKEM.Models.Helpers
                 command.Parameters.AddWithValue("@URL", url);
                 command.Parameters.AddWithValue("@ROLE", role);
                 command.Parameters.AddWithValue("@ENABLED", enabled);
+                command.Parameters.AddWithValue("@ORDERING", ordering);
+                command.Parameters.AddWithValue("@COMMENT", comment);
                 command.Parameters.AddWithValue("@CODE", code);
                 result = command.ExecuteNonQuery();
                 connection.Close();

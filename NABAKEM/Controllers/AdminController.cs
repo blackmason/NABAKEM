@@ -76,27 +76,41 @@ namespace NABAKEM.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        /*
-         * 메뉴관리
-         * 메뉴정보 수정
-         * 코드, 이름, 부모코드, 주소, 권한, 사용여부
-         */
-        public void UpdateMenu(string code, string name, string parentCode, string url, string role, string enabled)
+        /// <summary>
+        /// 메뉴관리
+        /// 메뉴수정
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="parentCode"></param>
+        /// <param name="url"></param>
+        /// <param name="role"></param>
+        /// <param name="enabled"></param>
+        /// <param name="ordering"></param>
+        /// <param name="comment"></param>
+        public void UpdateMenu(string code, string name, string parentCode, string url, string role, string enabled, string ordering, string comment)
         {
             MenuHelper helper = new MenuHelper();
-            helper.UpdateMenu(code, name, parentCode, url, role, enabled);
+            helper.UpdateMenu(code, name, parentCode, url, role, enabled, ordering, comment);
             return;
         }
 
-        /*
-         * 메뉴관리
-         * 메뉴추가
-         * 코드, 이름, 부모코드, 주소, 권한, 사용여부
-         */
-        public void AddMenu(string code, string name, string parentCode, string url, string role, string enabled)
+        /// <summary>
+        /// 메뉴관리
+        /// 메뉴생성
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="parentCode"></param>
+        /// <param name="url"></param>
+        /// <param name="role"></param>
+        /// <param name="enabled"></param>
+        /// <param name="ordering"></param>
+        /// <param name="comment"></param>
+        public void AddMenu(string code, string name, string parentCode, string url, string role, string enabled, string ordering, string comment)
         {
             MenuHelper helper = new MenuHelper();
-            helper.AddMenu(code, name, parentCode, url, role, enabled);
+            helper.AddMenu(code, name, parentCode, url, role, enabled, ordering, comment);
             return;
         }
 

@@ -70,7 +70,8 @@
         <td class="td_body" colspan="5"><input type="text" name="menuComment" id="menu-comment" class="txt_box menu_comment" /></td class="td_body">
     </tr>
 </table>
-
+1.상위메뉴: 최상위/상위 메뉴가 0인것만 보여주기<br />
+2.사용권한: 관리자전용(읽고/쓰기 관리자만), 개방형(방문자(또는 회원)이 글쓰기/읽기 가능)
 <div class="btn_group">
     <input type="button" value="취소" id="btn-cancel" class="btn_set" />
     <input type="button" value="수정" id="btn-update" class="btn_set" />
@@ -140,7 +141,7 @@
 
     function EmptyForms() {
         // 취소 버튼 클릭 시 텍스트박스 클리어
-        $('#menus-form input').each(function () {
+        $('.tbl_menu_info input').each(function () {
             $(this).val('');
         })
     }
@@ -149,7 +150,7 @@
         var value = [];
         var json = {};
 
-        $('#menus-form input').each(function (i, v) {
+        $('.tbl_menu_info input').each(function (i, v) {
             value[i] = $(this).val();
         })
 
