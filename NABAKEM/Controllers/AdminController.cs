@@ -141,5 +141,12 @@ namespace NABAKEM.Controllers
                 return RedirectToAction("Notice/List", "BBS");
             }
         }
+
+        public JsonResult GetParentMenus()
+        {
+            MenuHelper helper = new MenuHelper();
+            var parents = helper.GetParentMenus();
+            return Json(parents, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -44,6 +44,33 @@ namespace NABAKEM.Models.Helpers
             return menuList;
         }
 
+        public List<Menus> GetParentMenus()
+        {
+            string sql = "SELECT CODE, NAME FROM MENUS WHERE P_CODE = '0' AND ENABLED = 'Y' ORDER BY ORDERING ASC";
+            Menus menus;
+            List<Menus> parentMenus;
+
+            SetConnectionString();
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                reader = command.ExecuteReader();
+
+                parentMenus = new List<Menus>();
+                while (reader.Read())
+                {
+                    menus = new Menus();
+                    menus.Code = reader["CODE"].ToString();
+                    menus.Name = reader["NAME"].ToString();
+                    parentMenus.Add(menus);
+                }
+                connection.Close();
+            }
+
+            return parentMenus;
+        }
+
         public List<Menus> GetSubMenus()
         {
             string sql = "SELECT CODE, NAME FROM MENUS WHERE P_CODE != '0'";

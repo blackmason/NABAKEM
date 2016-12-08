@@ -41,7 +41,7 @@
         <th class="th_label">상위메뉴</th>
         <td class="td_body">
             <select name="menuParent" id="menu-parent" class="sel_box">
-                <option value="0">-----------</option>
+                <option value="0">최상위</option>
             </select>
         </td class="td_body">
         <th class="th_label">URL</th>
@@ -111,6 +111,8 @@
 
             return false;
         });
+
+        FindParents();
 
         $('#btn-cancel').click(function () {
             EmptyForms();
@@ -189,6 +191,20 @@
                 }
             });
         }
+    }
 
+    function FindParents() {
+        $.ajax({
+            url: '/Admin/GetParentMenus',
+            success: function (data) {
+                $.each(data, function (i) {
+                    $('#menu-parent').append('<option value="' + data[i].Code + '">' + data[i].Name + '</option>');
+                });
+                
+            },
+            error: function (request, status, error) {
+                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
     }
 </script>
