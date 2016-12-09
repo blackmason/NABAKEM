@@ -46,28 +46,35 @@
         </td class="td_body">
         <th class="th_label">URL</th>
         <td class="td_body"><input type="text" name="menuName" id="menu-url" class="txt_box" /></td class="td_body">
-    </tr>
-    <tr>
         <th class="th_label">사용여부</th>
         <td class="td_body">
             <select name="menuEnabled" id="menu-enabled" class="sel_box">
                 <option value="Y">사용</option>
                 <option value="N">사용안함</option>
             </select>
-        </td class="td_body">
-        <th class="th_label">사용권한</th>
+        </td>
+    </tr>
+    <tr>
+        <th class="th_label">읽기권한</th>
         <td class="td_body">
-            <select name="menuRole" id="menu-role" class="sel_box">
-                <option value="Open">개방</option>
-                <option value="Closed">관리자전용</option>
+            <select name="menuRAuth" id="menu-read-auth" class="sel_box">
+                <option value="1">모두</option>
+                <option value="0">관리자만</option>
             </select>
         </td class="td_body">
+        <th class="th_label">쓰기권한</th>
+        <td class="td_body">
+            <select name="menuWAuth" id="menu-write-auth" class="sel_box">
+                <option value="1">모두</option>
+                <option value="0">관리자만</option>
+            </select>
+        </td>
         <th class="th_label">순서</th>
-        <td class="td_body"><input type="text" name="menuName" id="menu-ordering" class="txt_box" /></td class="td_body">
+        <td class="td_body" colspan="3"><input type="text" name="menuOrdering" id="menu-ordering" class="txt_box" /></td class="td_body">
     </tr>
     <tr>
         <th class="th_label">설명</th>
-        <td class="td_body" colspan="5"><input type="text" name="menuComment" id="menu-comment" class="txt_box menu_comment" /></td class="td_body">
+        <td class="td_body" colspan="7"><input type="text" name="menuComment" id="menu-comment" class="txt_box menu_comment" /></td class="td_body">
     </tr>
 </table>
 1.상위메뉴: 최상위/상위 메뉴가 0인것만 보여주기<br />
@@ -103,6 +110,7 @@
                     $('#menu-comment').val(data.Comment);
                     $('#menu-role').val(data.Role);
                     $('#menu-enabled').val(data.Enabled);
+                    $('#menu-ordering').val(data.Ordering);
                 },
                 error: function (xhr, error, status) {
                     alert(xhr + ":" + error + ":" + status + ":" + typeof (code));
