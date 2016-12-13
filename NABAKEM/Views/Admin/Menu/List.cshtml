@@ -108,7 +108,17 @@
                     }
 
                     $('#menu-comment').val(data.Comment);
-                    $('#menu-role').val(data.Role);
+                    
+                    if ("100" == data.Role) {
+                        $('#menu-read-auth').val("1");
+                        $('#menu-write-auth').val("0");
+                    }
+                    else if ("200" == data.Role) {
+                        $('#menu-read-auth').val("1");
+                        $('#menu-write-auth').val("1");
+                    }
+
+                    //$('#menu-role').val(data.Role);
                     $('#menu-enabled').val(data.Enabled);
                     $('#menu-ordering').val(data.Ordering);
                 },
