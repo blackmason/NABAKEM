@@ -15,7 +15,7 @@ namespace NABAKEM.Models.Helpers
 
         public void SetConnectionString()
         {
-            connectionString = "server=127.0.0.1;uid=sa;password=ThsdhqmCGSY!!;database=SCT";
+            connectionString = "server=127.0.0.1;uid=sa;password=ThsdhqmCGSY!!;database=NABAKEM";
             //connectionString = "Data Source=(LocalDB)\\v11.0;AttachDbFilename=D:\\Workspace\\S_SCT\\Database\\SCT.mdf;Integrated Security=True;Connect Timeout=30";
         }
     }

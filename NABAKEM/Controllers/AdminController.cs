@@ -84,14 +84,14 @@ namespace NABAKEM.Controllers
         /// <param name="name"></param>
         /// <param name="parentCode"></param>
         /// <param name="url"></param>
-        /// <param name="role"></param>
-        /// <param name="enabled"></param>
+        /// <param name="authLevel"></param>
+        /// <param name="isUse"></param>
         /// <param name="ordering"></param>
         /// <param name="comment"></param>
-        public void UpdateMenu(string code, string name, string parentCode, string url, string role, string enabled, string ordering, string comment)
+        public void UpdateMenu(string code, string name, string parentCode, string url, string isUse, string ordering, string comment)
         {
             MenuHelper helper = new MenuHelper();
-            helper.UpdateMenu(code, name, parentCode, url, role, enabled, ordering, comment);
+            helper.UpdateMenu(code, name, parentCode, url, isUse, ordering, comment);
             return;
         }
 

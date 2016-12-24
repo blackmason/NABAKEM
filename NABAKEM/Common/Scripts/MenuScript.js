@@ -19,15 +19,14 @@ function SetDropdownMenu(obj) {
 
     // isolation the parents and child
     $.each(obj, function (i) {
-        if (obj[i].Enabled == 'Y') {
+        if (obj[i].IsUse == 'Y') {
             if (obj[i].ParentCode == '0') {
                 menu = {
                     code: obj[i].Code,
                     parentCode: obj[i].ParentCode,
                     name: obj[i].Name,
                     url: obj[i].Url,
-                    role: obj[i].Role,
-                    enabled: obj[i].Enabled,
+                    isUse: obj[i].IsUse,
                     child: []
                 }
                 menus.push(menu);
@@ -39,8 +38,7 @@ function SetDropdownMenu(obj) {
                     parentCode: obj[i].ParentCode,
                     name: obj[i].Name,
                     url: obj[i].Url,
-                    role: obj[i].Role,
-                    enabled: obj[i].Enabled,
+                    IsUse: obj[i].IsUse,
                     child: []
                 }
                 k++;

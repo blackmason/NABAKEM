@@ -13,7 +13,7 @@ namespace NABAKEM.Models.Helpers
         /* 전체메뉴 가져오기 */
         public List<Menus> GetAllMenus()
         {
-            string sql = "SELECT CODE, P_CODE, NAME, URL, ENABLED, ROLE, ORDERING, COMMENT, CONVERT(VARCHAR(16), MODIFIED, 120), CONVERT(VARCHAR(16), CREATED, 120) FROM MENUS ORDER BY ORDERING, CODE";
+            string sql = "MENU_ALL_USP";
 
             SetConnectionString();
             Menus menus;
@@ -27,16 +27,17 @@ namespace NABAKEM.Models.Helpers
                 while (reader.Read())
                 {
                     menus = new Menus();
-                    menus.Code = reader[0].ToString();
-                    menus.ParentCode = reader[1].ToString();
-                    menus.Name = reader[2].ToString();
-                    menus.Url = reader[3].ToString();
-                    menus.Enabled = reader[4].ToString();
-                    menus.Role = reader[5].ToString();
-                    menus.Ordering = reader[6].ToString();
-                    menus.Comment = reader[7].ToString();
-                    menus.Modified = reader[8].ToString();
-                    menus.Created = reader[9].ToString();
+                    menus.Code = reader["CODE"].ToString();
+                    menus.ParentCode = reader["P_CODE"].ToString();
+                    menus.TypeCode = reader["TYPE_CD"].ToString();
+                    menus.Name = reader["NAME"].ToString();
+                    menus.Url = reader["URL"].ToString();
+                    menus.IsUse = reader["IS_USE"].ToString();
+                    menus.AuthLevel = reader["AUTH_LVL"].ToString();
+                    menus.Ordering = reader["ORDERING"].ToString();
+                    menus.Comment = reader["COMMENT"].ToString();
+                    menus.Modified = reader["MODIFIED"].ToString();
+                    menus.Registered = reader["REGISTERED"].ToString();
                     menuList.Add(menus);
                 }
                 connection.Close();
@@ -46,7 +47,7 @@ namespace NABAKEM.Models.Helpers
 
         public List<Menus> GetParentMenus()
         {
-            string sql = "SELECT CODE, NAME FROM MENUS WHERE P_CODE = '0' AND ENABLED = 'Y' ORDER BY ORDERING ASC";
+            string sql = "MENU_PARENT_USP";
             Menus menus;
             List<Menus> parentMenus;
 
@@ -100,7 +101,7 @@ namespace NABAKEM.Models.Helpers
 
         public Menus GetMenu(string code)
         {
-            string sql = string.Format("SELECT CODE, P_CODE, NAME, URL, ORDERING, COMMENT, ENABLED, ROLE FROM MENUS WHERE CODE = '{0}'", code);
+            string sql = string.Format("SELECT A.CODE, A.P_CODE, A.NAME, A.URL, A.ORDERING, A.COMMENT, A.IS_USE, B.AUTH_LVL FROM MENUS A INNER JOIN MENU_GROUPS B ON A.TYPE_CD = B.CODE WHERE A.CODE = '{0}'", code);
 
             Menus menu = null;
             SetConnectionString();
@@ -119,8 +120,8 @@ namespace NABAKEM.Models.Helpers
                     menu.Url = reader[3].ToString();
                     menu.Ordering = reader[4].ToString();
                     menu.Comment = reader[5].ToString();
-                    menu.Enabled = reader[6].ToString();
-                    menu.Role = reader[7].ToString();
+                    menu.IsUse = reader[6].ToString();
+                    //menu.Role = reader[7].ToString();
                 }
                 connection.Close();
             }
@@ -154,7 +155,7 @@ namespace NABAKEM.Models.Helpers
             return result;
         }
 
-        public int UpdateMenu(string code, string name, string parentCode, string url, string role, string enabled, string ordering, string comment)
+        public int UpdateMenu(string code, string name, string parentCode, string url, string isUse, string ordering, string comment)
         {
             int result;
             string sql = "MENU_UPDATE_USP";
@@ -168,8 +169,7 @@ namespace NABAKEM.Models.Helpers
                 command.Parameters.AddWithValue("@NAME", name);
                 command.Parameters.AddWithValue("@P_CODE", parentCode);
                 command.Parameters.AddWithValue("@URL", url);
-                command.Parameters.AddWithValue("@ROLE", role);
-                command.Parameters.AddWithValue("@ENABLED", enabled);
+                command.Parameters.AddWithValue("@IS_USE", isUse);
                 command.Parameters.AddWithValue("@ORDERING", ordering);
                 command.Parameters.AddWithValue("@COMMENT", comment);
                 command.Parameters.AddWithValue("@CODE", code);

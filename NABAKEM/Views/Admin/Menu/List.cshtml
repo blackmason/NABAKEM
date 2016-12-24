@@ -4,7 +4,7 @@
 }
 
 <table class="menus_list tbl_list">
-    <tr>
+    <tr class="header">
         <th>코드</th>
         <th>상위코드</th>
         <th>메뉴이름</th>
@@ -19,17 +19,17 @@
 
     @foreach (var item in @Model)
     {
-        <tr data-menu-code="@item.Code">
+        <tr data-menu-code="@item.Code" class="data_tr">
             <td>@item.Code</td>
             <td>@item.ParentCode</td>
             <td>@item.Name</td>
             <td>@item.Url</td>
-            <td>@item.Enabled</td>
-            <td>@item.Role</td>
+            <td>@item.IsUse</td>
+            <td>@item.AuthLevel</td>
             <td>@item.Ordering</td>
             <td>@item.Comment</td>
             <td>@item.Modified</td>
-            <td>@item.Created</td>
+            <td>@item.Registered</td>
         </tr>
     }
 </table>
@@ -37,47 +37,34 @@
 <table class="tbl_menu_info tbl_form">
     <tr>
         <th class="th_label">메뉴이름</th>
-        <td class="td_body"><input type="text" name="menuName" id="menu-name" class="txt_box" /></td class="td_body">
+        <td class="td_body"><input type="text" name="menuName" id="menu-name" class="txt_box form_data" /></td>
         <th class="th_label">상위메뉴</th>
         <td class="td_body">
-            <select name="menuParent" id="menu-parent" class="sel_box">
+            <select name="menuParent" id="menu-parent" class="sel_box form_data">
                 <option value="0">최상위</option>
             </select>
-        </td class="td_body">
+        </td>
         <th class="th_label">URL</th>
-        <td class="td_body"><input type="text" name="menuName" id="menu-url" class="txt_box" /></td class="td_body">
+        <td class="td_body"><input type="text" name="menuUrl" id="menu-url" class="txt_box form_data" /></td>
         <th class="th_label">사용여부</th>
         <td class="td_body">
-            <select name="menuEnabled" id="menu-enabled" class="sel_box">
+            <select name="menuIsUse" id="menu-isuse" class="sel_box form_data">
                 <option value="Y">사용</option>
                 <option value="N">사용안함</option>
             </select>
         </td>
-    </tr>
-    <tr>
-        <th class="th_label">읽기권한</th>
-        <td class="td_body">
-            <select name="menuRAuth" id="menu-read-auth" class="sel_box">
-                <option value="1">모두</option>
-                <option value="0">관리자만</option>
-            </select>
-        </td class="td_body">
-        <th class="th_label">쓰기권한</th>
-        <td class="td_body">
-            <select name="menuWAuth" id="menu-write-auth" class="sel_box">
-                <option value="1">모두</option>
-                <option value="0">관리자만</option>
-            </select>
-        </td>
         <th class="th_label">순서</th>
-        <td class="td_body" colspan="3"><input type="text" name="menuOrdering" id="menu-ordering" class="txt_box" /></td class="td_body">
+        <td class="td_body"><input type="text" name="menuOrdering" id="menu-ordering" class="txt_box form_data" /></td>
     </tr>
     <tr>
         <th class="th_label">설명</th>
-        <td class="td_body" colspan="7"><input type="text" name="menuComment" id="menu-comment" class="txt_box menu_comment" /></td class="td_body">
+        <td class="td_body" colspan="9">
+            <input type="text" name="menuComment" id="menu-comment" class="txt_box menu_comment form_data" />
+            <input type="hidden" name="menuCode" id="menu-code" class="txt_box form_data" />
+        </td>
     </tr>
 </table>
-1.상위메뉴: 최상위/상위 메뉴가 0인것만 보여주기<br />
+
 2.사용권한: 관리자전용(읽고/쓰기 관리자만), 개방형(방문자(또는 회원)이 글쓰기/읽기 가능)
 <div class="btn_group">
     <input type="button" value="취소" id="btn-cancel" class="btn_set" />
@@ -88,7 +75,7 @@
 <script>
     $(document).ready(function () {
         var code;
-        $('.tbl_list tr').click(function () {
+        $('.tbl_list .data_tr').click(function () {
             code = $(this).data('menu-code');
 
             $.ajax({
@@ -108,18 +95,18 @@
                     }
 
                     $('#menu-comment').val(data.Comment);
-                    
-                    if ("100" == data.Role) {
-                        $('#menu-read-auth').val("1");
-                        $('#menu-write-auth').val("0");
-                    }
-                    else if ("200" == data.Role) {
-                        $('#menu-read-auth').val("1");
-                        $('#menu-write-auth').val("1");
-                    }
+
+                    //if ("100" == data.Role) {
+                    //    $('#menu-read-auth').val("1");
+                    //    $('#menu-write-auth').val("0");
+                    //}
+                    //else if ("200" == data.Role) {
+                    //    $('#menu-read-auth').val("1");
+                    //    $('#menu-write-auth').val("1");
+                    //}
 
                     //$('#menu-role').val(data.Role);
-                    $('#menu-enabled').val(data.Enabled);
+                    $('#menu-enabled').val(data.IsUse);
                     $('#menu-ordering').val(data.Ordering);
                 },
                 error: function (xhr, error, status) {
@@ -144,6 +131,10 @@
         })
     });
 
+    /*
+        선택 메뉴의 상위메뉴
+        선택한 메뉴의 상위메뉴를 가져와 셀렉트박스에 설정
+    */
     function GetParentName(parentCode) {
         if ('0' == parentCode) {
             $('#parent-name').val('최상위');
@@ -159,28 +150,55 @@
         }
     }
 
+    /*
+        상위메뉴 찾기
+        상위 메뉴 코드가 '0' 인 메뉴를 셀렉트박스에 세팅
+    */
+    function FindParents() {
+        $.ajax({
+            url: '/Admin/GetParentMenus',
+            success: function (data) {
+                $.each(data, function (i) {
+                    $('#menu-parent').append('<option value="' + data[i].Code + '">' + data[i].Name + '</option>');
+                });
+
+            },
+            error: function (request, status, error) {
+                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    }
+
+    /*
+        취소버튼
+        텍스트박스 클리어
+    */
     function EmptyForms() {
-        // 취소 버튼 클릭 시 텍스트박스 클리어
         $('.tbl_menu_info input').each(function () {
             $(this).val('');
         })
     }
 
+    /*
+        추가버튼/수정버튼
+        텍스트 박스 내용으로 메뉴 생성/메뉴 수정
+    */
     function SubmitForms(btnGb) {
         var value = [];
         var json = {};
 
-        $('.tbl_menu_info input').each(function (i, v) {
+        $('.tbl_menu_info .form_data').each(function (i, v) {
             value[i] = $(this).val();
         })
 
         json = {
             Name: value[0],
-            Code: value[1],
-            ParentCode: value[3],
-            Url: value[4],
-            Role: value[5],
-            Enabled: value[6]
+            ParentCode: value[1],
+            Url: value[2],
+            IsUse: value[3],
+            Ordering: value[4],
+            Comment: value[5],
+            Code: value[6]
         }
 
         if (btnGb == 'update') {
@@ -209,20 +227,5 @@
                 }
             });
         }
-    }
-
-    function FindParents() {
-        $.ajax({
-            url: '/Admin/GetParentMenus',
-            success: function (data) {
-                $.each(data, function (i) {
-                    $('#menu-parent').append('<option value="' + data[i].Code + '">' + data[i].Name + '</option>');
-                });
-                
-            },
-            error: function (request, status, error) {
-                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-            }
-        });
     }
 </script>
