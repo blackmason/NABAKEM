@@ -7,6 +7,7 @@
     <tr class="header">
         <th>코드</th>
         <th>상위코드</th>
+        <th>메뉴그룹</th>
         <th>메뉴이름</th>
         <th>URL</th>
         <th>사용여부</th>
@@ -17,11 +18,12 @@
         <th>만든날짜</th>
     </tr>
 
-    @foreach (var item in @Model)
+    @foreach (var item in @Model["menus"])
     {
         <tr data-menu-code="@item.Code" class="data_tr">
             <td>@item.Code</td>
             <td>@item.ParentCode</td>
+            <td>@item.TypeCode</td>
             <td>@item.Name</td>
             <td>@item.Url</td>
             <td>@item.IsUse</td>
@@ -36,20 +38,33 @@
 
 <table class="tbl_menu_info tbl_form">
     <tr>
+        <th class="th_label">메뉴코드</th>
+        <td class="td_body"><input type="text" name="menuCode" id="menu-code" class="txt_box form_data" /></td>
         <th class="th_label">메뉴이름</th>
         <td class="td_body"><input type="text" name="menuName" id="menu-name" class="txt_box form_data" /></td>
+        <th class="th_label">메뉴그룹</th>
+        <td class="td_body">
+            <select name="typeCode" id="menu-group" class="txt_box form_data">
+                @foreach (var item in @Model["groups"])
+                {
+                    <option value="@item.Code">@item.Name</option>
+                }
+            </select>
+        </td>
         <th class="th_label">상위메뉴</th>
         <td class="td_body">
             <select name="menuParent" id="menu-parent" class="sel_box form_data">
                 <option value="0">최상위</option>
             </select>
         </td>
+    </tr>
+    <tr>
         <th class="th_label">URL</th>
         <td class="td_body"><input type="text" name="menuUrl" id="menu-url" class="txt_box form_data" /></td>
         <th class="th_label">사용여부</th>
         <td class="td_body">
             <select name="menuIsUse" id="menu-isuse" class="sel_box form_data">
-                <option value="Y">사용</option>
+                <option value="Y" selected>사용</option>
                 <option value="N">사용안함</option>
             </select>
         </td>
@@ -58,9 +73,8 @@
     </tr>
     <tr>
         <th class="th_label">설명</th>
-        <td class="td_body" colspan="9">
+        <td class="td_body" colspan="5">
             <input type="text" name="menuComment" id="menu-comment" class="txt_box menu_comment form_data" />
-            <input type="hidden" name="menuCode" id="menu-code" class="txt_box form_data" />
         </td>
     </tr>
 </table>
@@ -95,17 +109,6 @@
                     }
 
                     $('#menu-comment').val(data.Comment);
-
-                    //if ("100" == data.Role) {
-                    //    $('#menu-read-auth').val("1");
-                    //    $('#menu-write-auth').val("0");
-                    //}
-                    //else if ("200" == data.Role) {
-                    //    $('#menu-read-auth').val("1");
-                    //    $('#menu-write-auth').val("1");
-                    //}
-
-                    //$('#menu-role').val(data.Role);
                     $('#menu-enabled').val(data.IsUse);
                     $('#menu-ordering').val(data.Ordering);
                 },
@@ -127,7 +130,7 @@
             SubmitForms('update');
         })
         $('#btn-add').click(function () {
-            SubmitForms();
+            SubmitForms('add');
         })
     });
 
@@ -192,13 +195,14 @@
         })
 
         json = {
-            Name: value[0],
-            ParentCode: value[1],
-            Url: value[2],
-            IsUse: value[3],
-            Ordering: value[4],
-            Comment: value[5],
-            Code: value[6]
+            Code: value[0],
+            Name: value[1],
+            TypeCode: value[2],
+            ParentCode: value[3],
+            Url: value[4],
+            IsUse: value[5],
+            Ordering: value[6],
+            Comment: value[7],
         }
 
         if (btnGb == 'update') {

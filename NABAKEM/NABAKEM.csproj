@@ -121,6 +121,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Domains\Board.cs" />
+    <Compile Include="Models\Domains\MenuGroups.cs" />
     <Compile Include="Models\Domains\Menus.cs" />
     <Compile Include="Models\Helpers\BoardHelper.cs" />
     <Compile Include="Models\Helpers\MenuHelper.cs" />

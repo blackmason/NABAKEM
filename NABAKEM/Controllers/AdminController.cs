@@ -54,9 +54,14 @@ namespace NABAKEM.Controllers
             if ("List" == id)
             {
                 MenuHelper helper = new MenuHelper();
-                var result = helper.GetAllMenus();
+                var menus = helper.GetAllMenus();
+                var groups = helper.GetMenuGroups();
 
-                return View("Menu/List", result);
+                Dictionary<string, object> mg = new Dictionary<string, object>();
+                mg.Add("menus", menus);
+                mg.Add("groups", groups);
+
+                return View("Menu/List", mg);
             }
             else
             {

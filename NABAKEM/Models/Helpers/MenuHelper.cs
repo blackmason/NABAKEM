@@ -45,9 +45,38 @@ namespace NABAKEM.Models.Helpers
             return menuList;
         }
 
+        public List<MenuGroups> GetMenuGroups()
+        {
+            string sql = "SELECT CODE, NAME FROM MENU_GROUPS ORDER BY CODE";
+
+            MenuGroups group;
+            List<MenuGroups> mGroups;
+
+            SetConnectionString();
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                reader = command.ExecuteReader();
+
+                mGroups = new List<MenuGroups>();
+                while (reader.Read())
+                {
+                    group = new MenuGroups();
+                    group.Code = reader["CODE"].ToString();
+                    group.Name = reader["NAME"].ToString();
+                    mGroups.Add(group);
+                }
+
+                connection.Close();
+            }
+
+            return mGroups;
+        }
+
         public List<Menus> GetParentMenus()
         {
-            string sql = "MENU_PARENT_USP";
+            string sql = "MENU_PARENTS_USP";
             Menus menus;
             List<Menus> parentMenus;
 
@@ -129,7 +158,7 @@ namespace NABAKEM.Models.Helpers
             return menu;
         }
 
-        public int AddMenu(string code, string name, string parentCode, string url, string role, string enabled, string ordering, string comment)
+        public int AddMenu(string code, string name, string parentCode, string url, string typeCode, string isUse, string ordering, string comment)
         {
             int result;
             string sql = "MENU_ADD_USP";
@@ -142,10 +171,10 @@ namespace NABAKEM.Models.Helpers
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@CODE", code);
                 command.Parameters.AddWithValue("@P_CODE", parentCode);
+                command.Parameters.AddWithValue("@TYPE_CD", typeCode);
                 command.Parameters.AddWithValue("@NAME", name);
                 command.Parameters.AddWithValue("@URL", url);
-                command.Parameters.AddWithValue("@ENABLED", enabled);
-                command.Parameters.AddWithValue("@ROLE", role);
+                command.Parameters.AddWithValue("@IS_USE", isUse);
                 command.Parameters.AddWithValue("@ORDERING", ordering);
                 command.Parameters.AddWithValue("@COMMENT", comment);
                 result = command.ExecuteNonQuery();
