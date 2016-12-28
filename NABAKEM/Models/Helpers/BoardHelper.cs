@@ -11,13 +11,13 @@ namespace NABAKEM.Models.Helpers
     public class BoardHelper : RootDataAccessHelper
     {
         // 게시물 리스트
-        public List<Board> GetAllContents()
+        public List<Boards> GetAllContents()
         {
             string sql = "NOTICE_LIST_USP";
 
             SetConnectionString();
-            List<Board> bbsList = new List<Board>();
-            Board bbs;
+            List<Boards> bbsList = new List<Boards>();
+            Boards bbs;
             using (connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -28,7 +28,7 @@ namespace NABAKEM.Models.Helpers
 
                 while (reader.Read())
                 {
-                    bbs = new Board();
+                    bbs = new Boards();
                     bbs.No = reader[0].ToString();
                     bbs.Category = reader[1].ToString();
                     bbs.Fixed = reader[2].ToString();
@@ -45,7 +45,7 @@ namespace NABAKEM.Models.Helpers
         }
 
         // 게시물 보기
-        public Board GetContent(string bbsId, string id)
+        public Boards GetContent(string bbsId, string id)
         {
             string sql = null;
 
@@ -63,7 +63,7 @@ namespace NABAKEM.Models.Helpers
             }
 
             SetConnectionString();
-            Board bbs = new Board();
+            Boards bbs = new Boards();
             using (connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -113,7 +113,7 @@ namespace NABAKEM.Models.Helpers
             //string sql = "NOTICE_USP";
 
             int result;
-            Board bbs = new Board();
+            Boards bbs = new Boards();
             SetConnectionString();
             using (connection = new SqlConnection(connectionString))
             {
@@ -187,12 +187,12 @@ namespace NABAKEM.Models.Helpers
             }
         }
 
-        public List<Board> GetAllArticle()
+        public List<Boards> GetAllArticle()
         {
             string sql = "ARTICLE_ALL_USP";
 
-            Board board;
-            List<Board> bbsList = new List<Board>();
+            Boards board;
+            List<Boards> bbsList = new List<Boards>();
             SetConnectionString();
             using (connection = new SqlConnection(connectionString))
             {
@@ -202,7 +202,7 @@ namespace NABAKEM.Models.Helpers
 
                 while (reader.Read())
                 {
-                    board = new Board();
+                    board = new Boards();
                     board.Bbs = reader[0].ToString();
                     board.Category = reader[1].ToString();
                     board.Subject = reader[2].ToString();

@@ -69,11 +69,11 @@
             </select>
         </td>
         <th class="th_label">순서</th>
-        <td class="td_body"><input type="text" name="menuOrdering" id="menu-ordering" class="txt_box form_data" /></td>
+        <td class="td_body" colspan="3"><input type="text" name="menuOrdering" id="menu-ordering" class="txt_box form_data" /></td>
     </tr>
     <tr>
         <th class="th_label">설명</th>
-        <td class="td_body" colspan="5">
+        <td class="td_body" colspan="7">
             <input type="text" name="menuComment" id="menu-comment" class="txt_box menu_comment form_data" />
         </td>
     </tr>
@@ -98,6 +98,9 @@
                 success: function (data) {
                     $('#menu-name').val(data.Name);
                     $('#menu-code').val(data.Code);
+
+                    $('#menu-group').val(data.TypeCode);
+
                     GetParentName(data.ParentCode);
                     $('#parent-code').val(data.ParentCode);
 
@@ -109,7 +112,7 @@
                     }
 
                     $('#menu-comment').val(data.Comment);
-                    $('#menu-enabled').val(data.IsUse);
+                    $('#menu-isuse').val(data.IsUse);
                     $('#menu-ordering').val(data.Ordering);
                 },
                 error: function (xhr, error, status) {
@@ -147,7 +150,7 @@
                 url: '/Admin/GetMenu',
                 data: { code: parentCode },
                 success: function (parent) {
-                    $('#parent-name').val(parent.Name);
+                    $('#menu-parent').val(parent.Code);
                 }
             });
         }

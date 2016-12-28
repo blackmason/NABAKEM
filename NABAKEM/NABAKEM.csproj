@@ -120,7 +120,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Domains\Board.cs" />
+    <Compile Include="Models\Domains\Boards.cs" />
     <Compile Include="Models\Domains\MenuGroups.cs" />
     <Compile Include="Models\Domains\Menus.cs" />
     <Compile Include="Models\Helpers\BoardHelper.cs" />

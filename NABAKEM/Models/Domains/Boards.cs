@@ -5,7 +5,7 @@ using System.Web;
 
 namespace NABAKEM.Models.Domains
 {
-    public class Board
+    public class Boards
     {
         public string No { get; set; }
         public string Category { get; set; }

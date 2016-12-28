@@ -10,7 +10,11 @@ namespace NABAKEM.Models.Helpers
 {
     public class MenuHelper : RootDataAccessHelper
     {
-        /* 전체메뉴 가져오기 */
+        /// <summary>
+        /// 메뉴관리
+        /// 전체메뉴 가져오기
+        /// </summary>
+        /// <returns></returns>
         public List<Menus> GetAllMenus()
         {
             string sql = "MENU_ALL_USP";
@@ -45,6 +49,157 @@ namespace NABAKEM.Models.Helpers
             return menuList;
         }
 
+        /// <summary>
+        /// 관리자메뉴-메뉴관리
+        /// 부모메뉴 가져오기
+        /// </summary>
+        /// <returns></returns>
+        public List<Menus> GetParentMenus()
+        {
+            string sql = "MENU_PARENTS_USP";
+            Menus menus;
+            List<Menus> parentMenus;
+
+            SetConnectionString();
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                reader = command.ExecuteReader();
+
+                parentMenus = new List<Menus>();
+                while (reader.Read())
+                {
+                    menus = new Menus();
+                    menus.Code = reader["CODE"].ToString();
+                    menus.Name = reader["NAME"].ToString();
+                    parentMenus.Add(menus);
+                }
+                connection.Close();
+            }
+
+            return parentMenus;
+        }
+
+        /// <summary>
+        /// 관리자메뉴-메뉴관리
+        /// 선택된 메뉴 정보 가져오기
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public Menus GetMenu(string code)
+        {
+            string sql = "MENU_SELECT_USP";
+
+            Menus menu = null;
+            SetConnectionString();
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@CODE", code);
+                reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    menu = new Menus();
+                    menu.Code = reader["CODE"].ToString();
+                    menu.Name = reader["NAME"].ToString();
+                    menu.TypeCode = reader["TYPE_CD"].ToString();
+                    menu.ParentCode = reader["P_CODE"].ToString();
+                    menu.Url = reader["URL"].ToString();
+                    menu.IsUse = reader["IS_USE"].ToString();
+                    menu.Comment = reader["COMMENT"].ToString();
+                    menu.Ordering = reader["ORDERING"].ToString();
+                }
+                connection.Close();
+            }
+
+            return menu;
+        }
+        
+        /// <summary>
+        /// 관리자메뉴-메뉴관리
+        /// 메뉴를 추가한다.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="typeCode"></param>
+        /// <param name="parentCode"></param>
+        /// <param name="url"></param>
+        /// <param name="isUse"></param>
+        /// <param name="ordering"></param>
+        /// <param name="comment"></param>
+        /// <returns></returns>
+        public int AddMenu(string code, string name, string typeCode, string parentCode, string url, string isUse, string ordering, string comment)
+        {
+            int result;
+            string sql = "MENU_ADD_USP";
+
+            SetConnectionString();
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@CODE", code);
+                command.Parameters.AddWithValue("@P_CODE", parentCode);
+                command.Parameters.AddWithValue("@TYPE_CD", typeCode);
+                command.Parameters.AddWithValue("@NAME", name);
+                command.Parameters.AddWithValue("@URL", url);
+                command.Parameters.AddWithValue("@IS_USE", isUse);
+                command.Parameters.AddWithValue("@ORDERING", ordering);
+                command.Parameters.AddWithValue("@COMMENT", comment);
+                result = command.ExecuteNonQuery();
+                connection.Close();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 관리자메뉴-메뉴관리
+        /// 선택한 메뉴 정보를 수정한다.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="parentCode"></param>
+        /// <param name="url"></param>
+        /// <param name="isUse"></param>
+        /// <param name="ordering"></param>
+        /// <param name="comment"></param>
+        /// <returns></returns>
+        public int UpdateMenu(string code, string name, string parentCode, string url, string isUse, string ordering, string comment)
+        {
+            int result;
+            string sql = "MENU_UPDATE_USP";
+
+            SetConnectionString();
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@NAME", name);
+                command.Parameters.AddWithValue("@P_CODE", parentCode);
+                command.Parameters.AddWithValue("@URL", url);
+                command.Parameters.AddWithValue("@IS_USE", isUse);
+                command.Parameters.AddWithValue("@ORDERING", ordering);
+                command.Parameters.AddWithValue("@COMMENT", comment);
+                command.Parameters.AddWithValue("@CODE", code);
+                result = command.ExecuteNonQuery();
+                connection.Close();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 관리자메뉴-메뉴관리
+        /// 메뉴그룹 전체 가져오기
+        /// </summary>
+        /// <returns></returns>
         public List<MenuGroups> GetMenuGroups()
         {
             string sql = "SELECT CODE, NAME FROM MENU_GROUPS ORDER BY CODE";
@@ -74,144 +229,57 @@ namespace NABAKEM.Models.Helpers
             return mGroups;
         }
 
-        public List<Menus> GetParentMenus()
+        /// <summary>
+        /// 관리자메뉴-메뉴관리
+        /// 메뉴그룹을 추가한다.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="authLevel"></param>
+        /// <param name="registered"></param>
+        public void AddGroup(string code, string name, int authLevel, string registered)
         {
-            string sql = "MENU_PARENTS_USP";
-            Menus menus;
-            List<Menus> parentMenus;
-
-            SetConnectionString();
-            using (connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-
-                parentMenus = new List<Menus>();
-                while (reader.Read())
-                {
-                    menus = new Menus();
-                    menus.Code = reader["CODE"].ToString();
-                    menus.Name = reader["NAME"].ToString();
-                    parentMenus.Add(menus);
-                }
-                connection.Close();
-            }
-
-            return parentMenus;
+            string sql = "";
         }
 
-        public List<Menus> GetSubMenus()
-        {
-            string sql = "SELECT CODE, NAME FROM MENUS WHERE P_CODE != '0'";
-            List<Menus> subMenuList;
-            SetConnectionString();
-            using (connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
 
-                subMenuList = new List<Menus>();
-                Menus menu;
-                while (reader.Read())
-                {
-                    menu = new Menus();
-                    menu.Code = reader[0].ToString();
-                    menu.Name = reader[1].ToString();
-                    subMenuList.Add(menu);
-                }
+        /// <summary>
+        /// 메뉴관리
+        /// 서브메뉴 가져오기
+        /// </summary>
+        /// <returns></returns>
+        //public List<Menus> GetSubMenus()
+        //{
+        //    string sql = "SELECT CODE, NAME FROM MENUS WHERE P_CODE != '0'";
+        //    List<Menus> subMenuList;
+        //    SetConnectionString();
+        //    using (connection = new SqlConnection(connectionString))
+        //    {
+        //        connection.Open();
+        //        command = new SqlCommand(sql, connection);
+        //        reader = command.ExecuteReader();
 
-                connection.Close();
-            }
+        //        subMenuList = new List<Menus>();
+        //        Menus menu;
+        //        while (reader.Read())
+        //        {
+        //            menu = new Menus();
+        //            menu.Code = reader[0].ToString();
+        //            menu.Name = reader[1].ToString();
+        //            subMenuList.Add(menu);
+        //        }
 
-            return subMenuList;
-        }
+        //        connection.Close();
+        //    }
 
-        public Menus GetMenu(string code)
-        {
-            string sql = string.Format("SELECT A.CODE, A.P_CODE, A.NAME, A.URL, A.ORDERING, A.COMMENT, A.IS_USE, B.AUTH_LVL FROM MENUS A INNER JOIN MENU_GROUPS B ON A.TYPE_CD = B.CODE WHERE A.CODE = '{0}'", code);
-
-            Menus menu = null;
-            SetConnectionString();
-            using (connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    menu = new Menus();
-                    menu.Code = reader[0].ToString();
-                    menu.ParentCode = reader[1].ToString();
-                    menu.Name = reader[2].ToString();
-                    menu.Url = reader[3].ToString();
-                    menu.Ordering = reader[4].ToString();
-                    menu.Comment = reader[5].ToString();
-                    menu.IsUse = reader[6].ToString();
-                    //menu.Role = reader[7].ToString();
-                }
-                connection.Close();
-            }
-
-            return menu;
-        }
-
-        public int AddMenu(string code, string name, string parentCode, string url, string typeCode, string isUse, string ordering, string comment)
-        {
-            int result;
-            string sql = "MENU_ADD_USP";
-
-            SetConnectionString();
-            using (connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                command = new SqlCommand(sql, connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@CODE", code);
-                command.Parameters.AddWithValue("@P_CODE", parentCode);
-                command.Parameters.AddWithValue("@TYPE_CD", typeCode);
-                command.Parameters.AddWithValue("@NAME", name);
-                command.Parameters.AddWithValue("@URL", url);
-                command.Parameters.AddWithValue("@IS_USE", isUse);
-                command.Parameters.AddWithValue("@ORDERING", ordering);
-                command.Parameters.AddWithValue("@COMMENT", comment);
-                result = command.ExecuteNonQuery();
-                connection.Close();
-            }
-
-            return result;
-        }
-
-        public int UpdateMenu(string code, string name, string parentCode, string url, string isUse, string ordering, string comment)
-        {
-            int result;
-            string sql = "MENU_UPDATE_USP";
-
-            SetConnectionString();
-            using (connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                command = new SqlCommand(sql, connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@NAME", name);
-                command.Parameters.AddWithValue("@P_CODE", parentCode);
-                command.Parameters.AddWithValue("@URL", url);
-                command.Parameters.AddWithValue("@IS_USE", isUse);
-                command.Parameters.AddWithValue("@ORDERING", ordering);
-                command.Parameters.AddWithValue("@COMMENT", comment);
-                command.Parameters.AddWithValue("@CODE", code);
-                result = command.ExecuteNonQuery();
-                connection.Close();
-            }
-
-            return result;
-        }
+        //    return subMenuList;
+        //}
 
         public void DeleteMenu(string code)
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

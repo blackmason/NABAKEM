@@ -43,12 +43,14 @@ namespace NABAKEM.Controllers
                 return RedirectToAction("Summary");
             }
         }
-        
 
-        /*
-         * 메뉴관리
-         * 메뉴전체보기
-         */
+
+        /// <summary>
+        /// 메뉴관리
+        /// 전체 메뉴와 메뉴 그룹 가져오기
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Menus(string id)
         {
             if ("List" == id)
@@ -69,11 +71,12 @@ namespace NABAKEM.Controllers
             }
         }
 
-        /*
-         * 메뉴관리
-         * 클릭한 메뉴정보 가져오기
-         * 코드
-         */
+        /// <summary>
+        /// 메뉴관리
+        /// 선택한 메뉴 정보 가져오기
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public JsonResult GetMenu(string code)
         {
             MenuHelper helper = new MenuHelper();
@@ -109,15 +112,28 @@ namespace NABAKEM.Controllers
         /// <param name="parentCode"></param>
         /// <param name="url"></param>
         /// <param name="role"></param>
-        /// <param name="enabled"></param>
+        /// <param name="isUse"></param>
         /// <param name="ordering"></param>
         /// <param name="comment"></param>
-        public void AddMenu(string code, string name, string parentCode, string url, string role, string enabled, string ordering, string comment)
+        public void AddMenu(string code, string name, string typeCode, string parentCode, string url, string isUse, string ordering, string comment)
         {
             MenuHelper helper = new MenuHelper();
-            helper.AddMenu(code, name, parentCode, url, role, enabled, ordering, comment);
+            helper.AddMenu(code, name, typeCode, parentCode, url, isUse, ordering, comment);
             return;
         }
+
+        public ActionResult GroupAdd(string code, string name, int authLevel, string registered)
+        {
+            MenuHelper helper = new MenuHelper();
+            helper.AddGroup(code, name, authLevel, registered);
+        }
+
+
+
+
+
+
+
 
         /*
          * 게시판관리
