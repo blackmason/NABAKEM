@@ -11,6 +11,8 @@ namespace NABAKEM.Models.Domains
         public string Name { get; set; }
         public string AuthLevel { get; set; }
         public string IsUse { get; set; }
-        public string Regsitered { get; set; }
+        public string Comment { get; set; }
+        public string Modified { get; set; }
+        public string Registered { get; set; }
     }
 }

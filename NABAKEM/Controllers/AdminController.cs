@@ -122,10 +122,33 @@ namespace NABAKEM.Controllers
             return;
         }
 
-        public ActionResult GroupAdd(string code, string name, int authLevel, string registered)
+        /// <summary>
+        /// 메뉴관리
+        /// 메뉴그룹생성
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="authLevel"></param>
+        public ActionResult MenuGroup(string id)
         {
             MenuHelper helper = new MenuHelper();
-            helper.AddGroup(code, name, authLevel, registered);
+
+            if ("List" == id)
+            {
+                var result = helper.GetMenuGroups();
+                return View("MenuGroup/List", result);
+            }
+            //else if ("Add" == id)
+            //{
+            //    helper.MenuAddGroup(code, name, authLevel);
+            //}
+                
+            else
+            {
+                var result = helper.GetMenuGroups();
+                return View(result);
+            }
+            
         }
 
 

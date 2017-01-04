@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/_Layouts/AdminLayout.cshtml";
+}
+
+<table class="tbl_list">
+    <tr>
+        <th>코드</th>
+        <th>이름</th>
+        <th>그룹권한</th>
+        <th>사용여부</th>
+        <th>설명</th>
+        <th>수정날짜</th>
+        <th>등록날짜</th>
+    </tr>
+    
+    @foreach (var item in @Model)
+    {
+        <tr>
+            <td>@item.Code</td>
+            <td>@item.Name</td>
+            <td>@item.AuthLevel</td>
+            <td>@item.IsUse</td>
+            <td>@item.Comment</td>
+            <td>@item.Modified</td>
+            <td>@item.Registered</td>
+        </tr>
+    }
+
+</table>
