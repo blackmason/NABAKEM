@@ -3,12 +3,13 @@
     Layout = "~/Views/_Layouts/AdminLayout.cshtml";
 }
 
-<table class="tbl_list">
+<table class="menu_group_list tbl_list">
     <tr>
         <th>코드</th>
         <th>이름</th>
-        <th>그룹권한</th>
         <th>사용여부</th>
+        <th>그룹권한</th>
+        <th>순서</th>
         <th>설명</th>
         <th>수정날짜</th>
         <th>등록날짜</th>
@@ -19,12 +20,42 @@
         <tr>
             <td>@item.Code</td>
             <td>@item.Name</td>
-            <td>@item.AuthLevel</td>
             <td>@item.IsUse</td>
+            <td>@item.AuthLevel</td>
+            <td>@item.Ordering</td>
             <td>@item.Comment</td>
             <td>@item.Modified</td>
             <td>@item.Registered</td>
         </tr>
     }
-
 </table>
+
+<table class="tbl_menu_info tbl_form">
+    <tr>
+        <th class="th_label">그룹코드</th>
+        <td class="td_body"><input type="text" name="menuCode" id="menu-code" class="txt_box form_data" /></td>
+        <th class="th_label">그룹이름</th>
+        <td class="td_body"><input type="text" name="menuName" id="menu-name" class="txt_box form_data" /></td>
+        <th class="th_label">사용여부</th>
+        <td class="td_body">
+            <select name="menuIsUse" id="menu-isuse" class="sel_box form_data">
+                <option value="Y" selected>사용</option>
+                <option value="N">사용안함</option>
+            </select>
+        </td>
+        <th class="th_label">순서</th>
+        <td class="td_body"><input type="text" name="menuOrdering" id="menu-ordering" class="txt_box form_data" /></td>
+    </tr>
+    <tr>
+        <th class="th_label">설명</th>
+        <td class="td_body" colspan="7">
+            <input type="text" name="menuComment" id="menu-comment" class="txt_box menu_comment form_data" />
+        </td>
+    </tr>
+</table>
+
+<div class="btn_group">
+    <input type="button" value="취소" id="btn-cancel" class="btn_set" />
+    <input type="button" value="수정" id="btn-update" class="btn_set" />
+    <input type="button" value="추가" id="btn-add" class="btn_set" />
+</div>

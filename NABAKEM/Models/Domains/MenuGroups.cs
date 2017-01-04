@@ -9,8 +9,9 @@ namespace NABAKEM.Models.Domains
     {
         public string Code { get; set; }
         public string Name { get; set; }
-        public string AuthLevel { get; set; }
         public string IsUse { get; set; }
+        public string AuthLevel { get; set; }
+        public string Ordering { get; set; }
         public string Comment { get; set; }
         public string Modified { get; set; }
         public string Registered { get; set; }

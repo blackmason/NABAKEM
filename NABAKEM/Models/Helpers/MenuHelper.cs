@@ -202,7 +202,7 @@ namespace NABAKEM.Models.Helpers
         /// <returns></returns>
         public List<MenuGroups> GetMenuGroups()
         {
-            string sql = "SELECT CODE, NAME, AUTH_LVL, IS_USE, COMMENT, MODIFIED, REGISTERED FROM MENU_GROUPS ORDER BY CODE";
+            string sql = "SELECT CODE, NAME, IS_USE, AUTH_LVL, ORDERING, COMMENT, MODIFIED, REGISTERED FROM MENU_GROUPS ORDER BY CODE";
 
             MenuGroups group;
             List<MenuGroups> mGroups;
@@ -220,8 +220,11 @@ namespace NABAKEM.Models.Helpers
                     group = new MenuGroups();
                     group.Code = reader["CODE"].ToString();
                     group.Name = reader["NAME"].ToString();
-                    group.AuthLevel = reader["AUTH_LVL"].ToString();
                     group.IsUse = reader["IS_USE"].ToString();
+                    group.AuthLevel = reader["AUTH_LVL"].ToString();
+                    group.Ordering = reader["ORDERING"].ToString();
+                    group.Comment = reader["COMMENT"].ToString();
+                    group.Modified = reader["MODIFIED"].ToString();
                     group.Registered = reader["REGISTERED"].ToString();
                     mGroups.Add(group);
                 }
