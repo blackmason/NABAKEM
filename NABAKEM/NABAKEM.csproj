@@ -431,6 +431,7 @@
     <Content Include="Common\Plugins\DaumEditor\pages\trex\multimedia.html" />
     <Content Include="Common\Plugins\jquery-1.11.3.min.js" />
     <Content Include="Common\Plugins\menus.js" />
+    <Content Include="Common\Scripts\Common.js" />
     <Content Include="Common\Scripts\MenuScript.js" />
     <Content Include="Common\Styles\AdminStyle.css" />
     <Content Include="Common\Styles\BbsStyle.css" />

@@ -17,7 +17,7 @@
     
     @foreach (var item in @Model)
     {
-        <tr>
+        <tr data-code="@item.Code" class="data_tr">
             <td>@item.Code</td>
             <td>@item.Name</td>
             <td>@item.IsUse</td>
@@ -33,23 +33,23 @@
 <table class="tbl_menu_info tbl_form">
     <tr>
         <th class="th_label">그룹코드</th>
-        <td class="td_body"><input type="text" name="menuCode" id="menu-code" class="txt_box form_data" /></td>
+        <td class="td_body"><input type="text" name="groupCode" id="group-code" class="txt_box form_data" /></td>
         <th class="th_label">그룹이름</th>
-        <td class="td_body"><input type="text" name="menuName" id="menu-name" class="txt_box form_data" /></td>
+        <td class="td_body"><input type="text" name="groupName" id="group-name" class="txt_box form_data" /></td>
         <th class="th_label">사용여부</th>
         <td class="td_body">
-            <select name="menuIsUse" id="menu-isuse" class="sel_box form_data">
+            <select name="groupIsUse" id="group-isuse" class="sel_box form_data">
                 <option value="Y" selected>사용</option>
                 <option value="N">사용안함</option>
             </select>
         </td>
         <th class="th_label">순서</th>
-        <td class="td_body"><input type="text" name="menuOrdering" id="menu-ordering" class="txt_box form_data" /></td>
+        <td class="td_body"><input type="text" name="groupOrdering" id="group-ordering" class="txt_box form_data" /></td>
     </tr>
     <tr>
         <th class="th_label">설명</th>
         <td class="td_body" colspan="7">
-            <input type="text" name="menuComment" id="menu-comment" class="txt_box menu_comment form_data" />
+            <input type="text" name="groupComment" id="group-comment" class="txt_box group_comment form_data" />
         </td>
     </tr>
 </table>
