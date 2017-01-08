@@ -4,7 +4,7 @@
 }
 
 <table class="menus_list tbl_list">
-    <tr class="header">
+    <tr>
         <th>코드</th>
         <th>상위코드</th>
         <th>메뉴그룹</th>
@@ -20,7 +20,7 @@
 
     @foreach (var item in @Model["menus"])
     {
-        <tr data-code="@item.Code" class="data_tr">
+        <tr data-code="@item.Code" data-key="menu" class="data_tr">
             <td>@item.Code</td>
             <td>@item.ParentCode</td>
             <td>@item.TypeCode</td>

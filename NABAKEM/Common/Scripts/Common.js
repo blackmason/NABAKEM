@@ -1,40 +1,18 @@
 ﻿$(document).ready(function () {
     var code;
+    var key;
+
     $('.tbl_list .data_tr').click(function () {
         code = $(this).data('code');
+        key = $(this).data('key');
 
-        $.ajax({
-            /*
-                메뉴/그룹/유저 테이블 정보를 인자로 넘기기
-            */
-            url: '/Admin/GetMenu',
-            data: { code: code },
-            success: function (data) {
-                $('#menu-name').val(data.Name);
-                $('#menu-code').val(data.Code);
+        if ('menu' == key) {
+            GetMenus(code);
+        }
+        else if ('menuType' == key) {
+            GetMenuGroup(code);
+        }
 
-                $('#menu-group').val(data.TypeCode);
-
-                GetParentName(data.ParentCode);
-                $('#parent-code').val(data.ParentCode);
-
-                if (data.Url == '') {
-                    $('#menu-url').val('없음');
-                }
-                else {
-                    $('#menu-url').val(data.Url);
-                }
-
-                $('#menu-comment').val(data.Comment);
-                $('#menu-isuse').val(data.IsUse);
-                $('#menu-ordering').val(data.Ordering);
-            },
-            error: function (xhr, error, status) {
-                alert(xhr + ":" + error + ":" + status + ":" + typeof (code));
-            }
-        });
-
-        return false;
     });
 
     FindParents();
@@ -50,6 +28,61 @@
         SubmitForms('add');
     })
 });
+
+/*
+    메뉴 가져오는 ajax
+*/
+function GetMenus(code) {
+    $.ajax({
+        url: '/Admin/GetMenu',
+        data: { code: code },
+        success: function (data) {
+            $('#menu-name').val(data.Name);
+            $('#menu-code').val(data.Code);
+
+            $('#menu-group').val(data.TypeCode);
+
+            GetParentName(data.ParentCode);
+            $('#parent-code').val(data.ParentCode);
+
+            if (data.Url == '') {
+                $('#menu-url').val('없음');
+            }
+            else {
+                $('#menu-url').val(data.Url);
+            }
+
+            $('#menu-comment').val(data.Comment);
+            $('#menu-isuse').val(data.IsUse);
+            $('#menu-ordering').val(data.Ordering);
+        },
+        error: function (xhr, error, status) {
+            alert(xhr + ":" + error + ":" + status + ":" + typeof (code));
+        }
+    });
+}
+
+/*
+    메뉴그룹 가져오는 ajax
+*/
+function GetMenuGroup(code) {
+    $.ajax({
+        url: '/Admin/GetMenuGroup',
+        data: { code: code },
+        success: function (result) {
+            $('#group-code').val(result.Code);
+            $('#group-name').val(result.Name);
+            $('#group-isuse').val(result.IsUse);
+            $('#group-auth').val(result.AuthLevel)
+            $('#group-ordering').val(result.Ordering);
+            $('#group-comment').val(result.Comment);
+        },
+        error: function (xhr, error, status) {
+            alert(xhr + ":" + error + ":" + status + ":" + typeof (code));
+        }
+    });
+}
+
 
 /*
     선택 메뉴의 상위메뉴

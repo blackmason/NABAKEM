@@ -47,7 +47,7 @@ namespace NABAKEM.Controllers
 
         /// <summary>
         /// 메뉴관리
-        /// 전체 메뉴와 메뉴 그룹 가져오기
+        /// 전체 메뉴 가져오기
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace NABAKEM.Controllers
             {
                 MenuHelper helper = new MenuHelper();
                 var menus = helper.GetAllMenus();
-                var groups = helper.GetMenuGroups();
+                var groups = helper.GetAllMenuGroups();
 
                 Dictionary<string, object> mg = new Dictionary<string, object>();
                 mg.Add("menus", menus);
@@ -124,7 +124,7 @@ namespace NABAKEM.Controllers
 
         /// <summary>
         /// 메뉴관리
-        /// 메뉴그룹생성
+        /// 전체 메뉴그룹 가져오기
         /// </summary>
         /// <param name="code"></param>
         /// <param name="name"></param>
@@ -135,28 +135,23 @@ namespace NABAKEM.Controllers
 
             if ("List" == id)
             {
-                var result = helper.GetMenuGroups();
+                var result = helper.GetAllMenuGroups();
                 return View("MenuGroup/List", result);
             }
-            //else if ("Add" == id)
-            //{
-            //    helper.MenuAddGroup(code, name, authLevel);
-            //}
-                
             else
             {
-                var result = helper.GetMenuGroups();
+                var result = helper.GetAllMenuGroups();
                 return View(result);
             }
-            
         }
 
+        public JsonResult GetMenuGroup(string code)
+        {
+            MenuHelper helper = new MenuHelper();
+            var result = helper.GetMenuGroup(code);
 
-
-
-
-
-
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
         /*
          * 게시판관리

@@ -175,7 +175,7 @@ a {
     height: 18px;
     border: 1px solid #ccc;
 }
-.menu_comment {
+.menu_comment, .group_comment {
     width: 90%;
 }
 .sel_box {

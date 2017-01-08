@@ -17,7 +17,7 @@
     
     @foreach (var item in @Model)
     {
-        <tr data-code="@item.Code" class="data_tr">
+        <tr data-code="@item.Code" data-key="menuType" class="data_tr">
             <td>@item.Code</td>
             <td>@item.Name</td>
             <td>@item.IsUse</td>
@@ -43,12 +43,14 @@
                 <option value="N">사용안함</option>
             </select>
         </td>
+        <th class="th_label">권한</th>
+        <td class="td_body"><input type="text" name="groupAuth" id="group-auth" class="txt_box" form_data /></td>
         <th class="th_label">순서</th>
         <td class="td_body"><input type="text" name="groupOrdering" id="group-ordering" class="txt_box form_data" /></td>
     </tr>
     <tr>
         <th class="th_label">설명</th>
-        <td class="td_body" colspan="7">
+        <td class="td_body" colspan="9">
             <input type="text" name="groupComment" id="group-comment" class="txt_box group_comment form_data" />
         </td>
     </tr>

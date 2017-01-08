@@ -200,7 +200,7 @@ namespace NABAKEM.Models.Helpers
         /// 메뉴그룹 전체 가져오기
         /// </summary>
         /// <returns></returns>
-        public List<MenuGroups> GetMenuGroups()
+        public List<MenuGroups> GetAllMenuGroups()
         {
             string sql = "SELECT CODE, NAME, IS_USE, AUTH_LVL, ORDERING, COMMENT, MODIFIED, REGISTERED FROM MENU_GROUPS ORDER BY CODE";
 
@@ -243,7 +243,7 @@ namespace NABAKEM.Models.Helpers
         /// <param name="name"></param>
         /// <param name="authLevel"></param>
         /// <param name="registered"></param>
-        public void MenuAddGroup(string code, string name, int authLevel)
+        public void AddMenuGroup(string code, string name, int authLevel)
         {
             string sql = "MENU_GROUP_ADD_USP";
 
@@ -260,6 +260,35 @@ namespace NABAKEM.Models.Helpers
             }
 
             return;
+        }
+
+        public MenuGroups GetMenuGroup(string code)
+        {
+            string sql = string.Format("SELECT CODE, NAME, IS_USE, AUTH_LVL, ORDERING, COMMENT FROM MENU_GROUPS WHERE CODE = '{0}'", code);
+
+            MenuGroups group = null;
+            SetConnectionString();
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                reader =command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    group = new MenuGroups();
+                    group.Code = reader["CODE"].ToString();
+                    group.Name = reader["NAME"].ToString();
+                    group.IsUse = reader["IS_USE"].ToString();
+                    group.AuthLevel = reader["AUTH_LVL"].ToString();
+                    group.Ordering = reader["ORDERING"].ToString();
+                    group.Comment = reader["COMMENT"].ToString();
+                }
+
+                connection.Close();
+            }
+
+            return group;
         }
 
 
@@ -299,6 +328,8 @@ namespace NABAKEM.Models.Helpers
         {
             throw new NotImplementedException();
         }
+
+
 
 
     }
