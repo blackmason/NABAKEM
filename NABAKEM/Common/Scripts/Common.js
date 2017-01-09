@@ -22,7 +22,15 @@
     });
 
     $('#btn-update').click(function () {
-        SubmitForms('update');
+        var btnVal = $('#btn-update').val();
+
+        // 메뉴/메뉴그룹에 따라 다르게 적용되게 수정 해야됨
+        if ('menuUpdate' == btnVal) {
+            SubmitForms('menuUpdate');
+        } else {
+            SubmitForms('menuGroupUpdate');
+        }
+        
     })
     $('#btn-add').click(function () {
         SubmitForms('add');

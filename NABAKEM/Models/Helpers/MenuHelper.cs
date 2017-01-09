@@ -202,7 +202,7 @@ namespace NABAKEM.Models.Helpers
         /// <returns></returns>
         public List<MenuGroups> GetAllMenuGroups()
         {
-            string sql = "SELECT CODE, NAME, IS_USE, AUTH_LVL, ORDERING, COMMENT, MODIFIED, REGISTERED FROM MENU_GROUPS ORDER BY CODE";
+            string sql = "MENU_GROUP_ALL_USP";
 
             MenuGroups group;
             List<MenuGroups> mGroups;
@@ -262,6 +262,12 @@ namespace NABAKEM.Models.Helpers
             return;
         }
 
+        /// <summary>
+        /// 관리자메뉴-메뉴관리
+        /// 선택한 메뉴그룹 정보를 가져온다.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public MenuGroups GetMenuGroup(string code)
         {
             string sql = string.Format("SELECT CODE, NAME, IS_USE, AUTH_LVL, ORDERING, COMMENT FROM MENU_GROUPS WHERE CODE = '{0}'", code);
@@ -289,6 +295,26 @@ namespace NABAKEM.Models.Helpers
             }
 
             return group;
+        }
+
+        public void UpdateMenuGroup(string code, string name, string isUse, string authLevel, string ordering, string comment) 
+        {
+            string sql = "MENU_GROUP_UPDATE_USP";
+
+            SetConnectionString();
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@CODE",code);
+                command.Parameters.AddWithValue("@NAME", name);
+                command.Parameters.AddWithValue("@IS_USE", isUse);
+                command.Parameters.AddWithValue("@AUTH_LVL", authLevel);
+                command.Parameters.AddWithValue("@ORDERING", ordering);
+                command.Parameters.AddWithValue("@COMMENT", comment);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
 
 

@@ -145,6 +145,12 @@ namespace NABAKEM.Controllers
             }
         }
 
+        /// <summary>
+        /// 메뉴관리
+        /// 선택한 메뉴그룹 정보 가져오기
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public JsonResult GetMenuGroup(string code)
         {
             MenuHelper helper = new MenuHelper();
