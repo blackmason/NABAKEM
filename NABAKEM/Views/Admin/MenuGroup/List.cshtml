@@ -3,7 +3,7 @@
     Layout = "~/Views/_Layouts/AdminLayout.cshtml";
 }
 
-<table class="menu_group_list tbl_list">
+<table class="tbl_list menu_group_list">
     <tr>
         <th>코드</th>
         <th>이름</th>
@@ -14,10 +14,10 @@
         <th>수정날짜</th>
         <th>등록날짜</th>
     </tr>
-    
+
     @foreach (var item in @Model)
     {
-        <tr data-code="@item.Code" data-key="menuType" class="data_tr">
+        <tr data-code="@item.Code" data-key="menuGroup" class="data_tr">
             <td>@item.Code</td>
             <td>@item.Name</td>
             <td>@item.IsUse</td>
@@ -30,7 +30,7 @@
     }
 </table>
 
-<table class="tbl_menu_info tbl_form">
+<table class="tbl_form tbl_menu_group_info">
     <tr>
         <th class="th_label">그룹코드</th>
         <td class="td_body"><input type="text" name="groupCode" id="group-code" class="txt_box form_data" /></td>

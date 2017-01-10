@@ -159,6 +159,45 @@ namespace NABAKEM.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="isUse"></param>
+        /// <param name="authLevel"></param>
+        /// <param name="ordering"></param>
+        /// <param name="comment"></param>
+        /// <returns></returns>
+        public void UpdateMenuGroup(string code, string name, string isUse, string authLevel, string ordering, string comment)
+        {
+            MenuHelper helper = new MenuHelper();
+            helper.UpdateMenuGroup(code, name, isUse, authLevel, ordering, comment);
+
+            //return Json(JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// 게시판관리
+        /// 게시판목록
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetAllBoards()
+        {
+            return View("");
+        }
+
+        /// <summary>
+        /// 사용자관리
+        /// 사용자목록
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetAllUsers()
+        {
+            return View("");
+        }
+
+
         /*
          * 게시판관리
          * 글 전체목록

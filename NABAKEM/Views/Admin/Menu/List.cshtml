@@ -3,7 +3,7 @@
     Layout = "~/Views/_Layouts/AdminLayout.cshtml";
 }
 
-<table class="menus_list tbl_list">
+<table class="tbl_list menu_list">
     <tr>
         <th>코드</th>
         <th>상위코드</th>
@@ -36,7 +36,7 @@
     }
 </table>
 
-<table class="tbl_menu_info tbl_form">
+<table class="tbl_form tbl_menu_info">
     <tr>
         <th class="th_label">메뉴코드</th>
         <td class="td_body"><input type="text" name="menuCode" id="menu-code" class="txt_box form_data" /></td>
@@ -79,7 +79,6 @@
     </tr>
 </table>
 
-2.사용권한: 관리자전용(읽고/쓰기 관리자만), 개방형(방문자(또는 회원)이 글쓰기/읽기 가능)
 <div class="btn_group">
     <input type="button" value="취소" id="btn-cancel" class="btn_set" />
     <input type="button" value="수정" id="btn-update" class="btn_set" />

@@ -9,7 +9,7 @@
         if ('menu' == key) {
             GetMenus(code);
         }
-        else if ('menuType' == key) {
+        else if ('menuGroup' == key) {
             GetMenuGroup(code);
         }
 
@@ -22,13 +22,13 @@
     });
 
     $('#btn-update').click(function () {
-        var btnVal = $('#btn-update').val();
+        var btnType = $(this).data('name');
 
         // 메뉴/메뉴그룹에 따라 다르게 적용되게 수정 해야됨
-        if ('menuUpdate' == btnVal) {
-            SubmitForms('menuUpdate');
+        if ('menu' == btnType) {
+            SubmitForms('menu');
         } else {
-            SubmitForms('menuGroupUpdate');
+            SubmitForms('menuGroup');
         }
         
     })
@@ -163,7 +163,20 @@ function SubmitForms(btnGb) {
         Comment: value[7],
     }
 
-    if (btnGb == 'update') {
+    if ('menuGroup' == btnGb) {
+        $.ajax({
+            url: '/Admin/UpdateMenuGroup',
+            data: json,
+            success: function (data) {
+                alert("메뉴수정이 완료되었습니다.");
+                location.reload();
+            },
+            error: function (request, status, error) {
+                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+            }
+        });
+    }
+    else if ('menu' == btnGb) {
         $.ajax({
             url: '/Admin/UpdateMenu',
             data: json,
