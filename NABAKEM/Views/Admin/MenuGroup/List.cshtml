@@ -3,6 +3,7 @@
     Layout = "~/Views/_Layouts/AdminLayout.cshtml";
 }
 
+<input type="hidden" name="pageKey" id="page-key" value="menuGroup" />
 <table class="tbl_list menu_group_list">
     <tr>
         <th>코드</th>
@@ -44,7 +45,7 @@
             </select>
         </td>
         <th class="th_label">권한</th>
-        <td class="td_body"><input type="text" name="groupAuth" id="group-auth" class="txt_box" form_data /></td>
+        <td class="td_body"><input type="text" name="groupAuth" id="group-auth" class="txt_box form_data" /></td>
         <th class="th_label">순서</th>
         <td class="td_body"><input type="text" name="groupOrdering" id="group-ordering" class="txt_box form_data" /></td>
     </tr>

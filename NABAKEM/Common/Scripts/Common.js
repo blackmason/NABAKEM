@@ -1,18 +1,17 @@
 ﻿$(document).ready(function () {
     var code;
-    var key;
+    var pageKey = $('#page-key').val();
 
-    $('.tbl_list .data_tr').click(function () {
+    $('.data_tr').click(function () {
         code = $(this).data('code');
-        key = $(this).data('key');
+        
 
-        if ('menu' == key) {
+        if ('menu' == pageKey) {
             GetMenus(code);
         }
-        else if ('menuGroup' == key) {
+        else if ('menuGroup' == pageKey) {
             GetMenuGroup(code);
         }
-
     });
 
     FindParents();
@@ -22,19 +21,20 @@
     });
 
     $('#btn-update').click(function () {
-        var btnType = $(this).data('name');
-
-        // 메뉴/메뉴그룹에 따라 다르게 적용되게 수정 해야됨
-        if ('menu' == btnType) {
-            SubmitForms('menu');
-        } else {
-            SubmitForms('menuGroup');
+        if ('menu' == pageKey) {
+            SubmitForms('menu','update');
+        } else if ('menuGroup' == pageKey) {
+            SubmitForms('menuGroup','update');
         }
-        
-    })
+    });
+
     $('#btn-add').click(function () {
-        SubmitForms('add');
-    })
+        if ('menu' == pageKey) {
+            SubmitForms('menu','add');
+        } else if ('menuGroup' == pageKey) {
+            SubmitForms('menuGroup','add');
+        }
+    });
 });
 
 /*
@@ -91,7 +91,6 @@ function GetMenuGroup(code) {
     });
 }
 
-
 /*
     선택 메뉴의 상위메뉴
     선택한 메뉴의 상위메뉴를 가져와 셀렉트박스에 설정
@@ -135,7 +134,7 @@ function FindParents() {
     텍스트박스 클리어
 */
 function EmptyForms() {
-    $('.tbl_menu_info input').each(function () {
+    $('.tbl_form input').each(function () {
         $(this).val('');
     })
 }
@@ -144,62 +143,97 @@ function EmptyForms() {
     추가버튼/수정버튼
     텍스트 박스 내용으로 메뉴 생성/메뉴 수정
 */
-function SubmitForms(btnGb) {
+function SubmitForms(btnGb, command) {
     var value = [];
     var json = {};
 
-    $('.tbl_menu_info .form_data').each(function (i, v) {
-        value[i] = $(this).val();
-    })
-
-    json = {
-        Code: value[0],
-        Name: value[1],
-        TypeCode: value[2],
-        ParentCode: value[3],
-        Url: value[4],
-        IsUse: value[5],
-        Ordering: value[6],
-        Comment: value[7],
-    }
-
-    if ('menuGroup' == btnGb) {
-        $.ajax({
-            url: '/Admin/UpdateMenuGroup',
-            data: json,
-            success: function (data) {
-                alert("메뉴수정이 완료되었습니다.");
-                location.reload();
-            },
-            error: function (request, status, error) {
-                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-            }
+    if ("menuGroup" == btnGb) {
+        $('.tbl_menu_group_info .form_data').each(function (i, v) {
+            value[i] = $(this).val();
         });
-    }
-    else if ('menu' == btnGb) {
-        $.ajax({
-            url: '/Admin/UpdateMenu',
-            data: json,
-            success: function (data) {
-                alert("메뉴수정이 완료되었습니다.");
-                location.reload();
-            },
-            error: function (request, status, error) {
-                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-            }
-        });
+
+        json = {
+            Code: value[0],
+            Name: value[1],
+            IsUse: value[2],
+            AuthLevel: value[3],
+            Ordering: value[4],
+            Comment: value[5]
+        }
     }
     else {
-        $.ajax({
-            url: '/Admin/AddMenu',
-            data: json,
-            success: function (data) {
-                alert("메뉴추가가 완료되었습니다.");
-                location.reload();
-            },
-            error: function (request, status, error) {
-                alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-            }
+        $('.tbl_menu_info .form_data').each(function (i, v) {
+            value[i] = $(this).val();
         });
+
+        json = {
+            Code: value[0],
+            Name: value[1],
+            TypeCode: value[2],
+            ParentCode: value[3],
+            Url: value[4],
+            IsUse: value[5],
+            Ordering: value[6],
+            Comment: value[7],
+        }
+    }
+
+    // Submit 커맨드가 update 일때
+    if ('update' == command) {
+        if ('menuGroup' == btnGb) {
+            $.ajax({
+                url: '/Admin/UpdateMenuGroup',
+                data: json,
+                success: function (data) {
+                    alert("메뉴수정이 완료되었습니다.");
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+        }
+        else if ('menu' == btnGb) {
+            $.ajax({
+                url: '/Admin/UpdateMenu',
+                data: json,
+                success: function (data) {
+                    alert("메뉴수정이 완료되었습니다.");
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+        }
+    }
+    // Submit 커맨드가 add 일때
+    else {
+        if ('menuGroup' == btnGb) {
+            $.ajax({
+                url: '/Admin/AddMenuGroup',
+                data: json,
+                success: function (data) {
+                    alert("메뉴추가가 완료되었습니다.");
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+        }
+        else if ('menu' == btnGb) {
+            $.ajax({
+                url: '/Admin/AddMenu',
+                data: json,
+                success: function (data) {
+                    alert("메뉴추가가 완료되었습니다.");
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                }
+            });
+        }
     }
 }

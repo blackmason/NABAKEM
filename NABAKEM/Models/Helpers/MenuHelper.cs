@@ -237,33 +237,6 @@ namespace NABAKEM.Models.Helpers
 
         /// <summary>
         /// 관리자메뉴-메뉴관리
-        /// 메뉴그룹을 추가한다.
-        /// </summary>
-        /// <param name="code"></param>
-        /// <param name="name"></param>
-        /// <param name="authLevel"></param>
-        /// <param name="registered"></param>
-        public void AddMenuGroup(string code, string name, int authLevel)
-        {
-            string sql = "MENU_GROUP_ADD_USP";
-
-            SetConnectionString();
-            using(connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@CODE", code);
-                command.Parameters.AddWithValue("@NAME", name);
-                command.Parameters.AddWithValue("@AUTH_LVL", authLevel);
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-
-            return;
-        }
-
-        /// <summary>
-        /// 관리자메뉴-메뉴관리
         /// 선택한 메뉴그룹 정보를 가져온다.
         /// </summary>
         /// <param name="code"></param>
@@ -297,6 +270,48 @@ namespace NABAKEM.Models.Helpers
             return group;
         }
 
+        /// <summary>
+        /// 관리자메뉴-메뉴관리
+        /// 메뉴그룹을 추가한다.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="authLevel"></param>
+        /// <param name="registered"></param>
+        public void AddMenuGroup(string code, string name, string isUse, string authLevel, string ordering, string comment)
+        {
+            string sql = "MENU_GROUP_ADD_USP";
+
+            SetConnectionString();
+            using (connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@CODE", code);
+                command.Parameters.AddWithValue("@NAME", name);
+                command.Parameters.AddWithValue("@IS_USE", isUse);
+                command.Parameters.AddWithValue("@AUTH_LVL", authLevel);
+                command.Parameters.AddWithValue("@ORDERING", ordering);
+                command.Parameters.AddWithValue("@COMMENT", comment);
+                
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+
+            return;
+        }
+
+        /// <summary>
+        /// 관리자메뉴-메뉴관리
+        /// 메뉴그룹을 수정한다.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="isUse"></param>
+        /// <param name="authLevel"></param>
+        /// <param name="ordering"></param>
+        /// <param name="comment"></param>
         public void UpdateMenuGroup(string code, string name, string isUse, string authLevel, string ordering, string comment) 
         {
             string sql = "MENU_GROUP_UPDATE_USP";
@@ -306,8 +321,9 @@ namespace NABAKEM.Models.Helpers
             {
                 connection.Open();
                 command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@CODE",code);
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@NAME", name);
+                command.Parameters.AddWithValue("@CODE", code);
                 command.Parameters.AddWithValue("@IS_USE", isUse);
                 command.Parameters.AddWithValue("@AUTH_LVL", authLevel);
                 command.Parameters.AddWithValue("@ORDERING", ordering);

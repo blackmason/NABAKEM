@@ -47,7 +47,7 @@ namespace NABAKEM.Controllers
 
         /// <summary>
         /// 메뉴관리
-        /// 전체 메뉴 가져오기
+        /// 전체 메뉴를 가져온다.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -73,7 +73,7 @@ namespace NABAKEM.Controllers
 
         /// <summary>
         /// 메뉴관리
-        /// 선택한 메뉴 정보 가져오기
+        /// 선택한 메뉴정보를 가져온다
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -86,7 +86,7 @@ namespace NABAKEM.Controllers
 
         /// <summary>
         /// 메뉴관리
-        /// 메뉴수정
+        /// 선택한 메뉴를 수정한다.
         /// </summary>
         /// <param name="code"></param>
         /// <param name="name"></param>
@@ -105,7 +105,7 @@ namespace NABAKEM.Controllers
 
         /// <summary>
         /// 메뉴관리
-        /// 메뉴생성
+        /// 메뉴를 추가한다.
         /// </summary>
         /// <param name="code"></param>
         /// <param name="name"></param>
@@ -123,8 +123,8 @@ namespace NABAKEM.Controllers
         }
 
         /// <summary>
-        /// 메뉴관리
-        /// 전체 메뉴그룹 가져오기
+        /// 메뉴관리-메뉴그룹
+        /// 전체 메뉴그룹을 가져온다.
         /// </summary>
         /// <param name="code"></param>
         /// <param name="name"></param>
@@ -146,8 +146,8 @@ namespace NABAKEM.Controllers
         }
 
         /// <summary>
-        /// 메뉴관리
-        /// 선택한 메뉴그룹 정보 가져오기
+        /// 메뉴관리-메뉴그룹
+        /// 선택한 메뉴그룹 정보를 가져온다.
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -160,7 +160,8 @@ namespace NABAKEM.Controllers
         }
 
         /// <summary>
-        /// 
+        /// 메뉴관리-메뉴그룹
+        /// 선택한 메뉴그룹 정보를 수정한다.
         /// </summary>
         /// <param name="code"></param>
         /// <param name="name"></param>
@@ -173,8 +174,22 @@ namespace NABAKEM.Controllers
         {
             MenuHelper helper = new MenuHelper();
             helper.UpdateMenuGroup(code, name, isUse, authLevel, ordering, comment);
+        }
 
-            //return Json(JsonRequestBehavior.AllowGet);
+        /// <summary>
+        /// 메뉴관리-메뉴그룹
+        /// 메뉴그룹 정보를 추가한다.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="name"></param>
+        /// <param name="isUse"></param>
+        /// <param name="authLevel"></param>
+        /// <param name="ordering"></param>
+        /// <param name="comment"></param>
+        public void AddMenuGroup(string code, string name, string isUse, string authLevel, string ordering, string comment)
+        {
+            MenuHelper helper = new MenuHelper();
+            helper.AddMenuGroup(code, name, isUse, authLevel, ordering, comment);
         }
 
         /// <summary>
